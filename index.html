@@ -182,45 +182,6 @@
   }
   .skill-tag:hover { border-color: var(--red); color: var(--red); }
 
-  /* CREATIVE SKILLS (Part 4 Addon) */
-  #creative { background: var(--off-black); padding: 80px 48px; }
-  .creative-inner {
-    display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start;
-  }
-  .creative-heading {
-    font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 300; line-height: 1.15; letter-spacing: -0.01em;
-  }
-  .creative-heading em { color: var(--red); font-style: italic; }
-  .creative-sub { color: var(--muted); font-size: 12px; line-height: 1.8; margin-top: 16px; }
-  .creative-tools-row {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px;
-  }
-  .creative-tool {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 8px 14px; border: 1px solid var(--border); color: var(--muted);
-    transition: all 0.2s;
-  }
-  .creative-tool:hover { border-color: var(--red); color: var(--text); }
-  .creative-tool-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
-  .creative-yt-link {
-    display: inline-flex; align-items: center; gap: 12px;
-    border: 1px solid rgba(192,57,43,0.4); padding: 14px 22px;
-    text-decoration: none; color: var(--text); font-size: 11px;
-    letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.2s;
-    position: relative; overflow: hidden; margin-top: 8px;
-  }
-  .creative-yt-link::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-    width: 0; background: var(--red-glow); transition: width 0.4s;
-  }
-  .creative-yt-link:hover { border-color: var(--red); }
-  .creative-yt-link:hover::before { width: 100%; }
-  .creative-yt-icon { color: var(--red); font-size: 15px; line-height: 1; }
-  .creative-yt-arrow { color: var(--red); margin-left: auto; }
-  @media (max-width: 768px) { .creative-inner { grid-template-columns: 1fr; gap: 36px; } }
-
   /* TEAM SECTION */
   #team { background: var(--black); padding: 120px 48px; }
   .team-inner {
@@ -234,6 +195,9 @@
   .team-logo-wrap::before {
     content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse at center, rgba(192,57,43,0.06) 0%, transparent 70%);
+  }
+  .team-logo-placeholder {
+    text-align: center;
   }
   .team-logo-img {
     max-width: 100%; max-height: 200px; object-fit: contain;
@@ -250,6 +214,10 @@
   }
   .team-logo-upload-btn:hover { border-color: var(--red); color: var(--red); }
   .team-logo-upload-btn input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .team-logo-svg {
+    width: 180px; height: 180px;
+  }
+  .team-content {}
   .team-heading {
     font-family: var(--serif); font-size: clamp(36px, 4vw, 56px);
     font-weight: 300; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 24px;
@@ -306,71 +274,168 @@
     display: flex; align-items: center; gap: 8px;
     background: transparent; border: 1px solid var(--red); color: var(--red);
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 10px 20px; cursor: none; transition: all 0.2s; white-space: nowrap;
-    display: none;
+    padding: 10px 20px; cursor: none; transition: all 0.2s; white-space: nowrap; display: none;
   }
   .add-project-btn:hover { background: var(--red); color: var(--text); }
   .add-project-btn.visible { display: flex; }
+
   .projects-grid { display: grid; gap: 1px; background: var(--border); }
   .project-card {
-    background: var(--black); padding: 40px; display: grid;
-    grid-template-columns: 60px 1fr auto; gap: 32px; align-items: start;
-    transition: background 0.3s; position: relative; overflow: hidden;
+    background: var(--black); padding: 40px;
+    display: grid; grid-template-columns: 60px 1fr auto;
+    gap: 32px; align-items: start; transition: background 0.3s;
+    position: relative; overflow: hidden;
   }
-  .project-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--red); transition: width 0.4s; }
+  .project-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 0; background: var(--red); transition: width 0.4s;
+  }
   .project-card:hover { background: var(--surface); }
   .project-card:hover::before { width: 2px; }
   .project-number { font-size: 11px; color: var(--red); opacity: 0.6; padding-top: 4px; }
   .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-  .project-tag { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); border: 1px solid rgba(192,57,43,0.3); padding: 3px 8px; }
+  .project-tag {
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--red); border: 1px solid rgba(192,57,43,0.3); padding: 3px 8px;
+  }
   .project-title { font-family: var(--serif); font-size: 28px; font-weight: 300; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.01em; }
   .project-desc { color: var(--muted); font-size: 12px; line-height: 1.8; max-width: 520px; }
-  .project-image-wrap { width: 200px; height: 140px; overflow: hidden; background: var(--surface); flex-shrink: 0; position: relative; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
-  .project-image-wrap img { width:100%; height:100%; object-fit:cover; filter: grayscale(30%); transition: all 0.3s; }
-  .project-image-wrap:hover img { filter: grayscale(0%); transform: scale(1.03); }
-  .project-img-placeholder { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; padding: 20px; }
-  .project-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
-  .project-link-icon { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; padding: 4px; }
-  .project-link-icon:hover { color: var(--red); }
-  .project-admin-actions { display: none; gap: 8px; }
-  .project-admin-actions.admin-visible { display: flex; }
-  .project-btn-mini { background: transparent; border: 1px solid var(--border); color: var(--muted); font-family: var(--mono); font-size: 9px; padding: 4px 8px; cursor: none; text-transform: uppercase; transition: all 0.2s; }
-  .project-btn-mini:hover { border-color: var(--red); color: var(--red); }
+  .project-image-wrap {
+    width: 200px; height: 140px; overflow: hidden;
+    background: var(--surface); flex-shrink: 0; position: relative;
+  }
+  .project-image-wrap img {
+    width: 100%; height: 100%; object-fit: cover; opacity: 0.7;
+    transition: transform 0.5s, opacity 0.3s; filter: grayscale(30%);
+  }
+  .project-card:hover .project-image-wrap img { transform: scale(1.06); opacity: 0.9; }
+  .project-image-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    border: 1px dashed var(--border);
+  }
+  .project-actions { display: none; flex-direction: column; gap: 8px; padding-top: 2px; }
+  .project-actions.admin-visible { display: flex; }
+  .project-edit-btn, .project-delete-btn {
+    background: transparent; border: none; color: var(--muted);
+    font-size: 15px; cursor: none; transition: color 0.2s; padding: 4px; line-height: 1;
+  }
+  .project-edit-btn:hover { color: var(--text); }
+  .project-delete-btn:hover { color: var(--red); }
 
   /* CONTACT */
-  #contact { padding: 120px 48px; background: var(--black); border-top: 1px solid var(--border); }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-  .contact-title { font-family: var(--serif); font-size: clamp(40px, 6vw, 80px); font-weight: 300; line-height: 1; letter-spacing: -0.02em; }
-  .contact-title em { color: var(--red); font-style: italic; }
-  .contact-info { display: flex; flex-direction: column; gap: 32px; justify-content: center; }
-  .contact-item-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
-  .contact-item-val { font-size: 16px; color: var(--text); text-decoration: none; transition: color 0.2s; display: inline-block; }
-  .contact-item-val:hover { color: var(--red); }
+  #contact { background: var(--off-black); padding: 120px 48px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .contact-heading { font-family: var(--serif); font-size: clamp(40px, 6vw, 80px); font-weight: 300; line-height: 1; letter-spacing: -0.02em; }
+  .contact-heading em { color: var(--red); font-style: italic; }
+  .contact-sub { color: var(--muted); margin-top: 24px; line-height: 1.8; font-size: 12px; }
+  .contact-links { display: flex; flex-direction: column; gap: 14px; }
+  .contact-link {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 22px; border: 1px solid var(--border); color: var(--text);
+    text-decoration: none; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: all 0.2s; position: relative; overflow: hidden;
+  }
+  .contact-link::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 0; background: var(--red-glow); transition: width 0.4s;
+  }
+  .contact-link:hover { border-color: var(--red); }
+  .contact-link:hover::before { width: 100%; }
+  .contact-link-arrow { color: var(--red); }
 
-  /* MODALS */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(10,10,10,0.85); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 24px; }
-  .modal-overlay.active { opacity: 1; pointer-events: all; }
-  .modal-container { background: var(--off-black); border: 1px solid var(--border); width: 100%; max-width: 540px; padding: 40px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-  .modal-close-btn { position: absolute; top: 24px; right: 24px; background: transparent; border: none; color: var(--muted); font-family: var(--mono); font-size: 11px; cursor: none; text-transform: uppercase; letter-spacing: 0.1em; }
-  .modal-close-btn:hover { color: var(--red); }
-  .modal-title { font-family: var(--serif); font-size: 28px; font-weight: 300; margin-bottom: 24px; letter-spacing: -0.01em; }
+  /* FOOTER */
+  footer {
+    padding: 28px 48px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { color: var(--muted); font-size: 11px; letter-spacing: 0.08em; }
+  .footer-right { color: var(--muted); font-size: 11px; }
+  .footer-right span { color: var(--red); }
+
+  /* Scroll progress */
+  .traveling-line {
+    position: fixed; left: 0; top: 0; width: 2px;
+    background: var(--red); opacity: 0.6; z-index: 50;
+  }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .parallax-slow { will-change: transform; }
+  .parallax-mid { will-change: transform; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 500;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--off-black); border: 1px solid var(--border);
+    width: 580px; max-width: calc(100vw - 48px); max-height: 90vh;
+    overflow-y: auto; padding: 48px;
+    transform: translateY(20px); transition: transform 0.3s; position: relative;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-title { font-family: var(--serif); font-size: 32px; font-weight: 300; margin-bottom: 32px; letter-spacing: -0.01em; }
   .modal-title em { color: var(--red); font-style: italic; }
-  .form-group { margin-bottom: 20px; }
-  .form-label { display: block; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
-  .form-control { width: 100%; background: var(--surface); border: 1px solid var(--border); padding: 12px; color: var(--text); font-family: var(--mono); font-size: 12px; transition: border-color 0.2s; }
-  .form-control:focus { outline: none; border-color: var(--red); }
-  .form-submit-btn { background: var(--red); border: none; color: var(--text); font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 28px; cursor: none; width: 100%; margin-top: 8px; transition: background 0.2s; }
-  .form-submit-btn:hover { background: var(--red-dim); }
-  .error-message { color: var(--red); font-size: 11px; margin-top: 8px; display: none; }
+  .modal-close {
+    position: absolute; top: 20px; right: 20px; background: transparent;
+    border: none; color: var(--muted); font-size: 18px; cursor: none; transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--red); }
+  .form-group { margin-bottom: 18px; }
+  label { display: block; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+  input[type="text"], input[type="url"], textarea {
+    width: 100%; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-family: var(--mono); font-size: 12px;
+    padding: 11px 14px; outline: none; transition: border-color 0.2s; resize: none;
+  }
+  input[type="text"]:focus, input[type="url"]:focus, textarea:focus { border-color: var(--red); }
+  textarea { height: 90px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .image-upload-area {
+    border: 1px dashed var(--border); padding: 28px; text-align: center;
+    cursor: none; transition: border-color 0.2s; position: relative;
+  }
+  .image-upload-area:hover { border-color: var(--red); }
+  .image-upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .upload-label { color: var(--muted); font-size: 11px; letter-spacing: 0.1em; }
+  .upload-label span { color: var(--red); }
+  .preview-img { max-width: 100%; max-height: 150px; object-fit: cover; margin-top: 12px; display: none; }
+  .submit-btn {
+    width: 100%; background: var(--red); border: none; color: var(--text);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 15px; cursor: none; margin-top: 8px; transition: background 0.2s;
+  }
+  .submit-btn:hover { background: var(--red-dim); }
+
+  /* LOGIN MODAL */
+  .login-modal {
+    background: var(--off-black); border: 1px solid var(--border);
+    width: 360px; max-width: calc(100vw - 48px); padding: 40px;
+    transform: translateY(20px); transition: transform 0.3s; position: relative;
+  }
+  .modal-overlay.open .login-modal { transform: translateY(0); }
+  .login-error { color: var(--red); font-size: 11px; letter-spacing: 0.08em; margin-top: 10px; min-height: 18px; }
 
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
-    #hero, #about, #team, #projects, #contact { padding: 80px 24px; }
-    .about-grid, .team-inner, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    #hero .hero-name, #hero .hero-tagline, #hero .hero-number, #hero .hero-links { max-width: 100%; }
-    .project-card { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
-    .project-image-wrap { width: 100%; height: 180px; }
-    .project-actions { align-items: flex-start; flex-direction: row; justify-content: space-between; width: 100%; margin-top: 12px; }
+    .nav-links { display: none; }
+    #hero, #about, #projects, #contact { padding: 80px 24px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .project-card { grid-template-columns: 40px 1fr; }
+    .project-image-wrap { display: none; }
+    .stats-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
 </head>
@@ -378,426 +443,528 @@
 
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
+<div class="traveling-line" id="scrollLine"></div>
 
-<button id="adminHint" onclick="openLoginModal()">[ . ]</button>
-<div id="adminBadge">Session: Main_Admin</div>
+<!-- Hidden admin trigger — visitors see nothing -->
+<button id="adminHint" onclick="openLoginModal()" title="">⚙</button>
+<div id="adminBadge">Admin Mode</div>
 
+<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Zain Wajid<em>.</em></a>
+  <a href="#hero" class="nav-logo">Zain <em>Wajid</em></a>
   <div class="nav-links">
     <a href="#about">About</a>
-    <a href="#projects">Projects</a>
+    <a href="#projects">Work</a>
+    <a href="#team">Racing</a>
     <a href="#contact">Contact</a>
   </div>
-  <button class="nav-admin-btn" id="navLogoutBtn" onclick="logoutAdmin()">Exit Admin</button>
+  <button class="nav-admin-btn" id="navAdminBtn" onclick="openModal()">+ Add Project</button>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-grid-lines"></div>
   <div class="hero-line"></div>
-  <div class="hero-number">// Core_Profile_2026</div>
-  <h1 class="hero-name">Data Scientist &amp; <em>Engineer.</em></h1>
-  <p class="hero-tagline">Specializing in predictive architectures, custom Linux engineering, and intelligent system models. Driven by performance optimization across both software kernels and high-velocity physical platforms.</p>
+  <p class="hero-number parallax-slow">001 / Portfolio</p>
+  <h1 class="hero-name parallax-mid">
+    Data<br><em>Scientist</em><br>&amp; Developer
+  </h1>
+  <p class="hero-tagline parallax-slow">
+    Transforming raw data into decisions. Building systems that think — from satellite flood models to full-stack platforms. Based in Lahore, Pakistan.
+  </p>
   <div class="hero-links">
     <a href="https://github.com/ZainWajid775" target="_blank" class="hero-link">GitHub</a>
-    <a href="#" class="hero-link">LinkedIn</a>
-    <a href="#" class="hero-link">Resume</a>
+    <a href="https://linkedin.com/in/zain-wajid-5978462a0" target="_blank" class="hero-link">LinkedIn</a>
+    <a href="mailto:zainwajid747@gmail.com" class="hero-link">Email</a>
   </div>
-  <div class="hero-photo-wrap" id="heroPhotoContainer">
+  <!-- Profile photo -->
+  <div class="hero-photo-wrap" id="heroPhotoWrap">
     <div class="hero-photo-placeholder" id="heroPhotoPlaceholder">
-      <span>[ Core_Image ]</span>
+      <span style="font-size:28px;opacity:0.3">◻</span>
+      <span>Your Photo</span>
     </div>
-    <img id="heroPhotoImg" src="" alt="Zain Wajid" style="display: none;">
-    <div class="hero-photo-upload" id="heroPhotoUploadWrap">
+    <img id="heroPhotoImg" src="" alt="Zain Wajid" style="display:none">
+    <div class="hero-photo-upload" id="heroPhotoUpload">
       <button class="hero-photo-upload-btn">
-        Update Photo
-        <input type="file" id="heroPhotoInput" accept="image/*" onchange="handleHeroPhoto(this)">
+        <input type="file" accept="image/*" onchange="handlePhotoUpload(event)">
+        Change Photo
       </button>
     </div>
   </div>
+
   <div class="hero-scroll">
     <div class="hero-scroll-line"></div>
-    <span>Scroll to navigate</span>
+    Scroll to explore
   </div>
-  <div class="hero-year">SYS_LOC // 33.6844° N, 73.0479° E</div>
+  <span class="hero-year">© 2025</span>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
-  <div class="section-label">01 // Profile Information</div>
+  <p class="section-label">002 / About</p>
   <div class="about-grid">
-    <div>
-      <h2 class="about-heading">Translating complex datasets into <em>operational reality.</em></h2>
+    <div class="reveal">
+      <h2 class="about-heading">Raw data.<br><em>Real</em><br>insight.</h2>
     </div>
     <div>
-      <p class="about-text">I architecture intelligent models designed to optimize low-level environments and track real-time processing streams. My work crosses paths between predictive maintenance frameworks and algorithmic optimizations, applying clean development patterns to demanding engineering ecosystems.</p>
-      <div class="skills-section">
-        <div class="skills-group-label">Core Technical Stacks</div>
+      <p class="about-text reveal reveal-delay-1">
+        I'm a Data Science undergraduate at Ghulam Ishaq Khan Institute, building end-to-end systems that bridge machine learning, cloud infrastructure, and interactive interfaces.
+      </p>
+      <p class="about-text reveal reveal-delay-2">
+        From classifying flood-prone regions using NASA satellite imagery to deploying cloud-native platforms on AWS — I work across the full stack with a focus on clean pipelines, real results, and purposeful design.
+      </p>
+      <div class="skills-section reveal reveal-delay-3">
+        <p class="skills-group-label">Languages</p>
         <div class="skills-list">
           <span class="skill-tag">Python</span>
-          <span class="skill-tag">C / C++</span>
-          <span class="skill-tag">Linux / Kernels</span>
-          <span class="skill-tag">PyTorch / CNNs</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Shell Script</span>
+        </div>
+        <p class="skills-group-label">Data Science</p>
+        <div class="skills-list">
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">XGBoost</span>
+          <span class="skill-tag">Rasterio</span>
+          <span class="skill-tag">Mlxtend</span>
+        </div>
+        <p class="skills-group-label">Cloud & Tools</p>
+        <div class="skills-list">
+          <span class="skill-tag">AWS</span>
           <span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">AWS Cloud</span>
+          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">D3</span>
+          <span class="skill-tag">Tableau</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="creative">
-  <div class="section-label">02 // Creative Media Production</div>
-  <div class="creative-inner">
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header reveal">
     <div>
-      <h2 class="creative-heading">Visual storytelling through high-fidelity <em>post-production.</em></h2>
-      <p class="creative-sub">Bridging the technical with the creative. Outside of code, I produce, edit, and orchestrate dynamic video content, focusing on modern aesthetics, crisp pacing, and technical precision.</p>
+      <p class="section-label" style="margin-bottom:16px">003 / Work</p>
+      <h2 class="projects-heading">Selected<br>Projects</h2>
     </div>
-    <div class="creative-right">
-      <div class="creative-tools-row">
-        <div class="creative-tool"><span class="creative-tool-dot"></span>Premiere Pro</div>
-        <div class="creative-tool"><span class="creative-tool-dot"></span>After Effects</div>
-        <div class="creative-tool"><span class="creative-tool-dot"></span>DaVinci Resolve</div>
-        <div class="creative-tool"><span class="creative-tool-dot"></span>Photoshop</div>
-        <div class="creative-tool"><span class="creative-tool-dot"></span>Audition</div>
+    <button class="add-project-btn" id="addProjectBtn" onclick="openModal()">
+      <span style="font-size:16px;line-height:1">+</span> Add Project
+    </button>
+  </div>
+  <div class="projects-grid" id="projectsGrid"></div>
+  <p id="emptyState" style="color:var(--muted);font-size:12px;text-align:center;padding:60px 0;display:none;">
+    No projects yet.
+  </p>
+</section>
+
+<!-- TEAM INFINITY -->
+<section id="team">
+  <p class="section-label">004 / Beyond the Screen</p>
+  <div class="team-inner">
+    <div class="team-logo-wrap reveal">
+      <div class="team-logo-placeholder" id="teamLogoPlaceholder">
+        <!-- Default SVG logo placeholder -->
+        <svg class="team-logo-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="90,10 170,50 170,130 90,170 10,130 10,50" fill="none" stroke="rgba(192,57,43,0.4)" stroke-width="1"/>
+          <polygon points="90,28 152,62 152,118 90,152 28,118 28,62" fill="none" stroke="rgba(192,57,43,0.2)" stroke-width="1"/>
+          <text x="90" y="82" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="13" fill="rgba(245,240,235,0.5)" letter-spacing="3">TEAM</text>
+          <text x="90" y="108" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="300" fill="#C0392B" letter-spacing="2">INFINITY</text>
+          <line x1="50" y1="94" x2="130" y2="94" stroke="rgba(192,57,43,0.3)" stroke-width="0.5"/>
+        </svg>
+        <img id="teamLogoImg" src="" alt="Team Infinity" class="team-logo-img" style="display:none">
       </div>
-      <a href="https://youtube.com" target="_blank" class="creative-yt-link">
-        <span class="creative-yt-icon">▶</span>
-        <span>View Media Portfolio on YouTube</span>
-        <span class="creative-yt-arrow">→</span>
+      <div class="team-logo-upload-wrap" id="teamLogoUploadWrap">
+        <button class="team-logo-upload-btn">
+          <input type="file" accept="image/*" onchange="handleTeamLogoUpload(event)">
+          Upload Team Logo
+        </button>
+      </div>
+    </div>
+    <div class="team-content reveal reveal-delay-2">
+      <h2 class="team-heading">Team<br><em>Infinity</em></h2>
+      <p class="team-text">
+        Away from the screen, I serve as Team Principal of Team Infinity — a student formula racing team competing at FSUK (Formula Student United Kingdom) and the SMME Piston Cup.
+      </p>
+      <p class="team-text">
+        As Team Principal I oversee strategy, operations, and cross-functional team coordination. I also led the Media and Powertrain divisions — handling content creation, technical report writing, performance research, and system simulations.
+      </p>
+      <p class="team-text">
+        Formula Student sharpened skills that no classroom can — leading under pressure, communicating across disciplines, and delivering results on a deadline that moves at race pace.
+      </p>
+      <div class="team-roles">
+        <div class="team-role">
+          <span class="team-role-title">Team Principal</span>
+          <span class="team-role-org">Team Infinity</span>
+        </div>
+        <div class="team-role">
+          <span class="team-role-title">Media Team Lead</span>
+          <span class="team-role-org">Content · Design · Reporting</span>
+        </div>
+        <div class="team-role">
+          <span class="team-role-title">Powertrain Team Lead</span>
+          <span class="team-role-org">Research · Simulation</span>
+        </div>
+        <div class="team-role">
+          <span class="team-role-title">Competitions</span>
+          <span class="team-role-org">FSUK · SMME Piston Cup</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">005 / Contact</p>
+  <div class="contact-grid">
+    <div class="reveal">
+      <h2 class="contact-heading">Let's<br>build<br>some<em>thing.</em></h2>
+      <p class="contact-sub">Open to data science roles, freelance projects, and collaborations. I work fast, communicate clearly, and care about the details.</p>
+    </div>
+    <div class="contact-links reveal reveal-delay-2">
+      <a href="mailto:zainwajid747@gmail.com" class="contact-link">
+        <span>zainwajid747@gmail.com</span><span class="contact-link-arrow">→</span>
+      </a>
+      <a href="tel:+923088189000" class="contact-link">
+        <span>(+92) 308-8189000</span><span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://linkedin.com/in/zain-wajid-5978462a0" target="_blank" class="contact-link">
+        <span>LinkedIn</span><span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://github.com/ZainWajid775" target="_blank" class="contact-link">
+        <span>GitHub</span><span class="contact-link-arrow">→</span>
       </a>
     </div>
   </div>
 </section>
 
-<section id="team">
-  <div class="section-label">03 // Affiliated Association</div>
-  <div class="team-inner">
-    <div class="team-logo-wrap">
-      <div class="team-logo-placeholder" id="teamLogoPlaceholder">
-        <svg class="team-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="48" stroke="#C0392B" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
-          <path d="M35 65L50 35L65 65" stroke="#C0392B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M41 53H59" stroke="#C0392B" stroke-width="1" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <img id="teamLogoImg" class="team-logo-img" src="" alt="Team Logo" style="display:none;">
-      <div class="team-logo-upload-wrap" id="teamLogoUploadWrap">
-        <button class="team-logo-upload-btn">
-          Upload Team Emblem
-          <input type="file" id="teamLogoInput" accept="image/*" onchange="handleTeamLogo(this)">
-        </button>
-      </div>
-    </div>
-    <div class="team-content">
-      <h2 class="team-heading">Formula Student <em>Off-Road Engineering Team.</em></h2>
-      <p class="team-text">Developing high-performance mechanical assemblies and custom electronic loggers optimized specifically for off-road internal combustion environments under rigorous track profiles.</p>
-      <div class="team-roles">
-        <div class="team-role">
-          <span class="team-role-title">Chief Technology Strategist &amp; Powertrain Dynamics</span>
-          <span class="team-role-org">FSUK / Piston Cup</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<footer>
+  <p class="footer-right">GIKI · Data Science · <span>Lahore, PK</span></p>
+</footer>
 
-<section id="projects">
-  <div class="projects-header">
-    <div>
-      <div class="section-label" style="margin-bottom:24px;">04 // Selected Works</div>
-      <h2 class="projects-heading">Core Repositories.</h2>
+<!-- ADD/EDIT PROJECT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 class="modal-title" id="modalTitle">Add <em>Project</em></h3>
+    <div class="form-group">
+      <label>Project Title *</label>
+      <input type="text" id="projTitle" placeholder="My Project">
     </div>
-    <button class="add-project-btn" id="openAddModalBtn" onclick="openProjectModal()">+ Insert Project</button>
-  </div>
-  <div class="projects-grid" id="projectsContainer">
-    </div>
-</section>
-
-<section id="contact">
-  <div class="section-label">05 // Secure Connection</div>
-  <div class="contact-grid">
-    <div>
-      <h2 class="contact-title">Initiate <em>handshake.</em></h2>
-    </div>
-    <div class="contact-info">
-      <div>
-        <div class="contact-item-label">Direct Node Link</div>
-        <a href="mailto:zain.wajid@student.giki.edu.pk" class="contact-item-val">zain.wajid@student.giki.edu.pk</a>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Tags (comma separated)</label>
+        <input type="text" id="projTags" placeholder="Python, ML, React">
       </div>
-      <div>
-        <div class="contact-item-label">Secure Signal</div>
-        <span class="contact-item-val">+92 300 0000000</span>
+      <div class="form-group">
+        <label>Year</label>
+        <input type="text" id="projYear" placeholder="2025">
       </div>
     </div>
-  </div>
-</section>
-
-<div class="modal-overlay" id="projectModal">
-  <div class="modal-container">
-    <button class="modal-close-btn" onclick="closeModal()">Close [x]</button>
-    <h3 class="modal-title" id="modalTitle">Insert <em>Project Node</em></h3>
-    <form id="projectForm" onsubmit="handleProjectSubmit(event)">
-      <input type="hidden" id="projectIndex">
-      <div class="form-group">
-        <label class="form-label">Project Identifier</label>
-        <input type="text" id="projTitle" class="form-control" required placeholder="e.g., Deep Flood Analytics Engine">
+    <div class="form-group">
+      <label>Description</label>
+      <textarea id="projDesc" placeholder="What did you build and why does it matter?"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Project Image</label>
+      <div class="image-upload-area">
+        <input type="file" id="projImage" accept="image/*" onchange="handleImageUpload(event)">
+        <p class="upload-label">Drop image here or <span>browse</span></p>
+        <img class="preview-img" id="previewImg" alt="Preview">
       </div>
-      <div class="form-group">
-        <label class="form-label">Operational Index / Year</label>
-        <input type="text" id="projYear" class="form-control" required placeholder="e.g., 2026">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Architectural Frameworks (Comma Separated)</label>
-        <input type="text" id="projTags" class="form-control" required placeholder="e.g., Python, PyTorch, CNN">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Functional Profile Description</label>
-        <textarea id="projDesc" class="form-control" rows="4" required placeholder="Provide structural engineering definitions..."></textarea>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Media Asset Capture (Image Upload)</label>
-        <input type="file" id="projImage" class="form-control" accept="image/*">
-      </div>
-      <button type="submit" class="form-submit-btn">Authorize Node Deployment</button>
-    </form>
+    </div>
+    <div class="form-group">
+      <label>Project URL (optional)</label>
+      <input type="url" id="projUrl" placeholder="https://github.com/...">
+    </div>
+    <button class="submit-btn" onclick="saveProject()">Save Project</button>
   </div>
 </div>
 
-<div class="modal-overlay" id="loginModal">
-  <div class="modal-container">
-    <button class="modal-close-btn" onclick="closeLoginModal()">Abort [x]</button>
-    <h3 class="modal-title">Admin <em>Handshake Verification</em></h3>
-    <form id="loginForm" onsubmit="handleLoginSubmit(event)">
-      <div class="form-group">
-        <label class="form-label">Access Token / Password</label>
-        <input type="password" id="adminPassword" class="form-control" required placeholder="••••••••">
-        <div class="error-message" id="loginError">Signature Mismatch. Access Denied.</div>
-      </div>
-      <button type="submit" class="form-submit-btn">Verify Signature</button>
-    </form>
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginOverlay" onclick="handleLoginOverlayClick(event)">
+  <div class="login-modal">
+    <button class="modal-close" onclick="closeLoginModal()">✕</button>
+    <h3 class="modal-title">Admin <em>Login</em></h3>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="text" id="adminPassInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkLogin()">
+    </div>
+    <button class="submit-btn" onclick="checkLogin()">Enter</button>
+    <p class="login-error" id="loginError"></p>
   </div>
 </div>
 
 <script>
-  // Global App Space
-  let isAdmin = false;
-  let projects = [];
+// ── CONFIG ──
+// Change this password to something only you know
+const ADMIN_PASSWORD = 'zain2025';
 
-  // Custom Cursor Pipeline
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursor-ring');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    ring.style.left = e.clientX + 'px';
-    ring.style.top = e.clientY + 'px';
-  });
+// ── STATE ──
+let projects = JSON.parse(localStorage.getItem('zw_projects') || '[]');
+let editIndex = -1;
+let imageDataUrl = '';
+let isAdmin = false;
 
-  // Storage Utilities
-  function saveToStorage() {
-    localStorage.setItem('portfolio_projects', JSON.stringify(projects));
-  }
-  function saveSettings(key, val) {
-    localStorage.setItem('portfolio_settings_' + key, val);
-  }
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let rx = 0, ry = 0, cx = 0, cy = 0;
+document.addEventListener('mousemove', e => { rx = e.clientX; ry = e.clientY; });
+(function animateCursor() {
+  cx += (rx - cx) * 0.15; cy += (ry - cy) * 0.15;
+  cursor.style.left = rx + 'px'; cursor.style.top = ry + 'px';
+  ring.style.left = cx + 'px'; ring.style.top = cy + 'px';
+  requestAnimationFrame(animateCursor);
+})();
 
-  // Admin Verification Sequence
-  function updateAdminUI() {
-    const adminActionElements = document.querySelectorAll('.add-project-btn, .project-admin-actions, .team-logo-upload-wrap, #heroPhotoUploadWrap');
-    adminActionElements.forEach(el => {
-      if (isAdmin) el.classList.add('admin-visible', 'visible');
-      else el.classList.remove('admin-visible', 'visible');
-    });
-    document.getElementById('navLogoutBtn').style.display = isAdmin ? 'block' : 'none';
-    document.getElementById('adminBadge').style.display = isAdmin ? 'block' : 'none';
-  }
+// ── SCROLL ──
+const scrollLine = document.getElementById('scrollLine');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  scrollLine.style.height = (pct * 100) + 'vh';
+  const y = window.scrollY;
+  document.querySelectorAll('.parallax-slow').forEach(el => el.style.transform = `translateY(${y * 0.12}px)`);
+  document.querySelectorAll('.parallax-mid').forEach(el => el.style.transform = `translateY(${y * 0.06}px)`);
+});
 
-  function openLoginModal() { document.getElementById('loginModal').classList.add('active'); }
-  function closeLoginModal() {
-    document.getElementById('loginModal').classList.remove('active');
-    document.getElementById('adminPassword').value = '';
-    document.getElementById('loginError').style.display = 'none';
-  }
+// ── REVEAL ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  function handleLoginSubmit(e) {
-    e.preventDefault();
-    if (document.getElementById('adminPassword').value === 'zain775') {
-      isAdmin = true;
-      localStorage.setItem('portfolio_admin_session', 'active');
-      updateAdminUI();
-      closeLoginModal();
-      renderProjects();
-    } else {
-      document.getElementById('loginError').style.display = 'block';
-    }
-  }
+// ── ADMIN ──
+function openLoginModal() {
+  document.getElementById('adminPassInput').value = '';
+  document.getElementById('loginError').textContent = '';
+  document.getElementById('loginOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('adminPassInput').focus(), 300);
+}
+function closeLoginModal() { document.getElementById('loginOverlay').classList.remove('open'); }
+function handleLoginOverlayClick(e) { if (e.target === document.getElementById('loginOverlay')) closeLoginModal(); }
 
-  function logoutAdmin() {
-    isAdmin = false;
-    localStorage.removeItem('portfolio_admin_session');
-    updateAdminUI();
-    renderProjects();
-  }
-
-  // Media Assert Processing (Hero & Teams)
-  function handleHeroPhoto(input) {
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        document.getElementById('heroPhotoImg').src = e.target.result;
-        document.getElementById('heroPhotoImg').style.display = 'block';
-        document.getElementById('heroPhotoPlaceholder').style.display = 'none';
-        saveSettings('hero_photo', e.target.result);
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-
-  function handleTeamLogo(input) {
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        document.getElementById('teamLogoImg').src = e.target.result;
-        document.getElementById('teamLogoImg').style.display = 'block';
-        document.getElementById('teamLogoPlaceholder').style.display = 'none';
-        saveSettings('team_logo', e.target.result);
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-
-  // Projects Matrix Rendering
-  function openProjectModal(index = null) {
-    const modal = document.getElementById('projectModal');
-    const form = document.getElementById('projectForm');
-    form.reset();
-    document.getElementById('projectIndex').value = index !== null ? index : '';
-    document.getElementById('modalTitle').innerHTML = index !== null ? 'Modify <em>Project Node</em>' : 'Insert <em>Project Node</em>';
-    
-    if (index !== null) {
-      const p = projects[index];
-      document.getElementById('projTitle').value = p.title;
-      document.getElementById('projYear').value = p.year;
-      document.getElementById('projTags').value = p.tags.join(', ');
-      document.getElementById('projDesc').value = p.desc;
-    }
-    modal.classList.add('active');
-  }
-
-  function closeModal() { document.getElementById('projectModal').classList.remove('active'); }
-
-  function handleProjectSubmit(e) {
-    e.preventDefault();
-    const idx = document.getElementById('projectIndex').value;
-    const title = document.getElementById('projTitle').value;
-    const year = document.getElementById('projYear').value;
-    const tags = document.getElementById('projTags').value.split(',').map(t => t.trim()).filter(t => t);
-    const desc = document.getElementById('projDesc').value;
-    const imgInput = document.getElementById('projImage');
-
-    const execution = () => {
-      const projectData = { title, year, tags, desc, image: imgInput.files[0] ? imgInput.resultCache : (idx !== '' ? projects[idx].image : '') };
-      if (idx !== '') projects[idx] = projectData;
-      else projects.push(projectData);
-      
-      saveToStorage();
-      renderProjects();
-      closeModal();
-    };
-
-    if (imgInput.files && imgInput.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function(ev) {
-        imgInput.resultCache = ev.target.result;
-        execution();
-      };
-      reader.readAsDataURL(imgInput.files[0]);
-    } else {
-      execution();
-    }
-  }
-
-  function deleteProject(idx) {
-    if(confirm('Confirm detachment of chosen node portfolio?')) {
-      projects.splice(idx, 1);
-      saveToStorage();
-      renderProjects();
-    }
-  }
-
-  function renderProjects() {
-    const container = document.getElementById('projectsContainer');
-    container.innerHTML = '';
-    
-    projects.forEach((p, idx) => {
-      const card = document.createElement('div');
-      card.className = 'project-card';
-      
-      let tagMarkup = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
-      let imageMarkup = p.image ? `<img src="${p.image}" alt="${p.title}">` : `<div class="project-img-placeholder">System Asset Unassigned</div>`;
-      
-      let numStr = String(idx + 1).padStart(2, '0');
-      
-      card.innerHTML = `
-        <div class="project-number">${numStr} //</div>
-        <div>
-          <div class="project-tags">${tagMarkup}</div>
-          <h3 class="project-title">${p.title}</h3>
-          <p class="project-desc">${p.desc}</p>
-        </div>
-        <div class="project-actions">
-          <div class="project-image-wrap">${imageMarkup}</div>
-          <div class="project-admin-actions ${isAdmin ? 'admin-visible' : ''}">
-            <button class="project-btn-mini" onclick="openProjectModal(${idx})">Edit</button>
-            <button class="project-btn-mini" onclick="deleteProject(${idx})">Drop</button>
-          </div>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // Bootstrapping Setup
-  if (localStorage.getItem('portfolio_admin_session') === 'active') {
+function checkLogin() {
+  const val = document.getElementById('adminPassInput').value;
+  if (val === ADMIN_PASSWORD) {
     isAdmin = true;
-    updateAdminUI();
-  }
-
-  if (localStorage.getItem('portfolio_settings_hero_photo')) {
-    const cachedHero = localStorage.getItem('portfolio_settings_hero_photo');
-    document.getElementById('heroPhotoImg').src = cachedHero;
-    document.getElementById('heroPhotoImg').style.display = 'block';
-    document.getElementById('heroPhotoPlaceholder').style.display = 'none';
-  }
-
-  if (localStorage.getItem('portfolio_settings_team_logo')) {
-    const cachedTeam = localStorage.getItem('portfolio_settings_team_logo');
-    document.getElementById('teamLogoImg').src = cachedTeam;
-    document.getElementById('teamLogoImg').style.display = 'block';
-    document.getElementById('teamLogoPlaceholder').style.display = 'none';
-  }
-
-  if(!localStorage.getItem('portfolio_projects')) {
-    projects = [
-      { title: "Satellite-Based Flood Detection", tags: ["Python", "TensorFlow", "CNN", "GDAL"], year: "2025", desc: "Remote sensing computer vision engine identifying real-time regional water dispersion trends over Sindh and Punjab from multimodal imagery vectors.", url: "", image: "" },
-      { title: "UniPulse — Event Management Platform", tags: ["AWS", "React", "PostgreSQL", "JWT"], year: "2025", desc: "Cloud-native university event platform with QR-based ticketing, multi-role auth via AWS Cognito, and deployment across EC2, Elastic Beanstalk, RDS, S3, and CloudFront.", url: "", image: "" },
-      { title: "Mental Health AI Assistant", tags: ["React", "Node.js", "PostgreSQL", "Framer Motion"], year: "2024", desc: "AI-driven wellness platform integrating therapy chatbots, mood tracking, and an expert appointment system. Built with PostgreSQL for long-term mental health trend analysis.", url: "", image: "" },
-      { title: "Retail Sales Analytics & Segmentation", tags: ["Python", "Scikit-learn", "Streamlit", "K-Means"], year: "2024", desc: "End-to-end customer segmentation using RFM analysis, Apriori association rule mining, and K-Means clustering. Delivered a Streamlit dashboard visualizing KPIs and behavioral segments.", url: "", image: "" },
-      { title: "System Resource Monitor", tags: ["C", "Bash", "Ubuntu", "Linux"], year: "2023", desc: "Lightweight Linux monitoring tool using system calls to track RAM, CPU, processes, and uptime in real time. Optimised for minimal overhead on low-resource systems.", url: "", image: "" }
-    ];
-    saveToStorage();
-    renderProjects();
+    closeLoginModal();
+    enableAdminUI();
   } else {
-    projects = JSON.parse(localStorage.getItem('portfolio_projects'));
-    renderProjects();
+    document.getElementById('loginError').textContent = 'Incorrect password.';
   }
+}
 
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      closeModal();
-      closeLoginModal();
+function enableAdminUI() {
+  document.getElementById('navAdminBtn').classList.add('visible');
+  document.getElementById('addProjectBtn').classList.add('visible');
+  document.getElementById('adminBadge').classList.add('visible');
+  document.querySelectorAll('.project-actions').forEach(el => el.classList.add('admin-visible'));
+  document.getElementById('heroPhotoUpload').classList.add('admin-visible');
+  document.getElementById('teamLogoUploadWrap').classList.add('admin-visible');
+}
+
+function logout() {
+  isAdmin = false;
+  document.getElementById('navAdminBtn').classList.remove('visible');
+  document.getElementById('addProjectBtn').classList.remove('visible');
+  document.getElementById('adminBadge').classList.remove('visible');
+  document.querySelectorAll('.project-actions').forEach(el => el.classList.remove('admin-visible'));
+  document.getElementById('heroPhotoUpload').classList.remove('admin-visible');
+  document.getElementById('teamLogoUploadWrap').classList.remove('admin-visible');
+}
+
+// ── PROJECTS ──
+function renderProjects() {
+  const grid = document.getElementById('projectsGrid');
+  const empty = document.getElementById('emptyState');
+  if (projects.length === 0) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  grid.innerHTML = projects.map((p, i) => `
+    <div class="project-card reveal" style="transition-delay:${i * 0.07}s">
+      <span class="project-number">0${i + 1}</span>
+      <div class="project-body">
+        <div class="project-tags">
+          ${(p.tags || []).map(t => `<span class="project-tag">${t.trim()}</span>`).join('')}
+          ${p.year ? `<span class="project-tag">${p.year}</span>` : ''}
+        </div>
+        ${p.url
+          ? `<a href="${p.url}" target="_blank" style="text-decoration:none;color:inherit"><h3 class="project-title">${p.title}</h3></a>`
+          : `<h3 class="project-title">${p.title}</h3>`}
+        <p class="project-desc">${p.desc || ''}</p>
+      </div>
+      <div class="project-image-wrap">
+        ${p.image
+          ? `<img src="${p.image}" alt="${p.title}">`
+          : `<div class="project-image-placeholder">No Image</div>`}
+      </div>
+      <div class="project-actions${isAdmin ? ' admin-visible' : ''}">
+        <button class="project-edit-btn" onclick="editProject(${i})" title="Edit">✎</button>
+        <button class="project-delete-btn" onclick="deleteProject(${i})" title="Delete">✕</button>
+      </div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.project-card.reveal').forEach(el => { el.classList.remove('visible'); observer.observe(el); });
+}
+
+function saveToStorage() { localStorage.setItem('zw_projects', JSON.stringify(projects)); }
+
+// ── MODAL ──
+function openModal(idx = -1) {
+  if (!isAdmin) return;
+  editIndex = idx; imageDataUrl = '';
+  document.getElementById('previewImg').style.display = 'none';
+  document.getElementById('previewImg').src = '';
+  if (idx >= 0) {
+    const p = projects[idx];
+    document.getElementById('projTitle').value = p.title || '';
+    document.getElementById('projTags').value = (p.tags || []).join(', ');
+    document.getElementById('projYear').value = p.year || '';
+    document.getElementById('projDesc').value = p.desc || '';
+    document.getElementById('projUrl').value = p.url || '';
+    document.getElementById('modalTitle').innerHTML = 'Edit <em>Project</em>';
+    if (p.image) { const img = document.getElementById('previewImg'); img.src = p.image; img.style.display = 'block'; imageDataUrl = p.image; }
+  } else {
+    ['projTitle','projTags','projDesc','projUrl'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('projYear').value = new Date().getFullYear();
+    document.getElementById('modalTitle').innerHTML = 'Add <em>Project</em>';
+  }
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function handleOverlayClick(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+function handleImageUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+
+  img.onload = function () {
+
+    const MAX_WIDTH = 600;
+    const scale = MAX_WIDTH / img.width;
+
+    canvas.width = MAX_WIDTH;
+    canvas.height = img.height * scale;
+
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+    imageDataUrl = canvas.toDataURL('image/jpeg',0.65);
+
+    const preview = document.getElementById('previewImg');
+    preview.src = imageDataUrl;
+    preview.style.display = 'block';
+  };
+
+  img.src = URL.createObjectURL(file);
+}
+function saveProject() {
+  const title = document.getElementById('projTitle').value.trim();
+  if (!title) { alert('Please enter a project title.'); return; }
+  const proj = {
+    title,
+    tags: document.getElementById('projTags').value.split(',').map(t => t.trim()).filter(Boolean),
+    year: document.getElementById('projYear').value.trim(),
+    desc: document.getElementById('projDesc').value.trim(),
+    url: document.getElementById('projUrl').value.trim(),
+    image: imageDataUrl || ''
+  };
+  if (editIndex >= 0) projects[editIndex] = proj; else projects.push(proj);
+  saveToStorage(); renderProjects(); closeModal();
+}
+function editProject(idx) { openModal(idx); }
+function deleteProject(idx) { if (!confirm('Delete this project?')) return; projects.splice(idx, 1); saveToStorage(); renderProjects(); }
+
+// ── PHOTO UPLOAD ──
+function handlePhotoUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+
+  img.onload = function () {
+    const MAX_WIDTH = 800;
+    const scale = MAX_WIDTH / img.width;
+
+    canvas.width = MAX_WIDTH;
+    canvas.height = img.height * scale;
+
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    const compressed = canvas.toDataURL('image/jpeg', 0.7);
+
+    try {
+      localStorage.setItem('zw_photo', compressed);
+      applyPhoto(compressed);
+    } catch(err) {
+      alert("Storage full. Clear some project images.");
     }
-  });
+  };
+
+  img.src = URL.createObjectURL(file);
+}
+function applyPhoto(src) {
+  const img = document.getElementById('heroPhotoImg');
+  const placeholder = document.getElementById('heroPhotoPlaceholder');
+  img.src = src; img.style.display = 'block';
+  if (placeholder.querySelector('span')) placeholder.style.display = 'none';
+}
+
+// ── TEAM LOGO UPLOAD ──
+function handleTeamLogoUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(ev){
+    try{
+      localStorage.setItem('zw_teamlogo', ev.target.result);
+      applyTeamLogo(ev.target.result);
+    } catch(err){
+      alert("Storage full.");
+    }
+  };
+
+  reader.readAsDataURL(file);
+}
+function applyTeamLogo(src) {
+  const img = document.getElementById('teamLogoImg');
+  const svg = document.querySelector('.team-logo-svg');
+  img.src = src; img.style.display = 'block';
+  if (svg) svg.style.display = 'none';
+}
+
+// ── LOAD SAVED MEDIA ──
+const savedPhoto = localStorage.getItem('zw_photo');
+if (savedPhoto) applyPhoto(savedPhoto);
+const savedLogo = localStorage.getItem('zw_teamlogo');
+if (savedLogo) applyTeamLogo(savedLogo);
+if (projects.length === 0) {
+  projects = [
+    { title: "Satellite Flood Warning System", tags: ["Python", "OpenCV", "Streamlit", "ML"], year: "2024", desc: "Transformed raw NASA GeoTIFF satellite imagery into ML features using raster preprocessing pipelines. Applied Logistic Regression achieving ~95% prediction accuracy on historical data, with an interactive Streamlit dashboard for disaster response.", url: "", image: "" },
+    { title: "UniPulse — Event Management Platform", tags: ["AWS", "React", "PostgreSQL", "JWT"], year: "2025", desc: "Cloud-native university event platform with QR-based ticketing, multi-role auth via AWS Cognito, and deployment across EC2, Elastic Beanstalk, RDS, S3, and CloudFront.", url: "", image: "" },
+    { title: "Mental Health AI Assistant", tags: ["React", "Node.js", "PostgreSQL", "Framer Motion"], year: "2024", desc: "AI-driven wellness platform integrating therapy chatbots, mood tracking, and an expert appointment system. Built with PostgreSQL for long-term mental health trend analysis.", url: "", image: "" },
+    { title: "Retail Sales Analytics & Segmentation", tags: ["Python", "Scikit-learn", "Streamlit", "K-Means"], year: "2024", desc: "End-to-end customer segmentation using RFM analysis, Apriori association rule mining, and K-Means clustering. Delivered a Streamlit dashboard visualizing KPIs and behavioral segments.", url: "", image: "" },
+    { title: "System Resource Monitor", tags: ["C", "Bash", "Ubuntu", "Linux"], year: "2023", desc: "Lightweight Linux monitoring tool using system calls to track RAM, CPU, processes, and uptime in real time. Optimised for minimal overhead on low-resource systems.", url: "", image: "" }
+  ];
+  saveToStorage(); renderProjects();
+} else { renderProjects(); }
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeLoginModal(); } });
 </script>
 </body>
 </html>
