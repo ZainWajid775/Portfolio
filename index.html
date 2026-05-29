@@ -843,10 +843,31 @@ function openModal(idx = -1) {
 function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
 function handleOverlayClick(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
 function handleImageUpload(e) {
-  const file = e.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => { imageDataUrl = ev.target.result; const img = document.getElementById('previewImg'); img.src = imageDataUrl; img.style.display = 'block'; };
-  reader.readAsDataURL(file);
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+
+  img.onload = function () {
+
+    const MAX_WIDTH = 600;
+    const scale = MAX_WIDTH / img.width;
+
+    canvas.width = MAX_WIDTH;
+    canvas.height = img.height * scale;
+
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+    imageDataUrl = canvas.toDataURL('image/jpeg',0.65);
+
+    const preview = document.getElementById('previewImg');
+    preview.src = imageDataUrl;
+    preview.style.display = 'block';
+  };
+
+  img.src = URL.createObjectURL(file);
 }
 function saveProject() {
   const title = document.getElementById('projTitle').value.trim();
@@ -867,14 +888,33 @@ function deleteProject(idx) { if (!confirm('Delete this project?')) return; proj
 
 // ── PHOTO UPLOAD ──
 function handlePhotoUpload(e) {
-  const file = e.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const data = ev.target.result;
-    localStorage.setItem('zw_photo', data);
-    applyPhoto(data);
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+
+  img.onload = function () {
+    const MAX_WIDTH = 800;
+    const scale = MAX_WIDTH / img.width;
+
+    canvas.width = MAX_WIDTH;
+    canvas.height = img.height * scale;
+
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    const compressed = canvas.toDataURL('image/jpeg', 0.7);
+
+    try {
+      localStorage.setItem('zw_photo', compressed);
+      applyPhoto(compressed);
+    } catch(err) {
+      alert("Storage full. Clear some project images.");
+    }
   };
-  reader.readAsDataURL(file);
+
+  img.src = URL.createObjectURL(file);
 }
 function applyPhoto(src) {
   const img = document.getElementById('heroPhotoImg');
@@ -885,13 +925,20 @@ function applyPhoto(src) {
 
 // ── TEAM LOGO UPLOAD ──
 function handleTeamLogoUpload(e) {
-  const file = e.target.files[0]; if (!file) return;
+  const file = e.target.files[0];
+  if (!file) return;
+
   const reader = new FileReader();
-  reader.onload = ev => {
-    const data = ev.target.result;
-    localStorage.setItem('zw_teamlogo', data);
-    applyTeamLogo(data);
+
+  reader.onload = function(ev){
+    try{
+      localStorage.setItem('zw_teamlogo', ev.target.result);
+      applyTeamLogo(ev.target.result);
+    } catch(err){
+      alert("Storage full.");
+    }
   };
+
   reader.readAsDataURL(file);
 }
 function applyTeamLogo(src) {
