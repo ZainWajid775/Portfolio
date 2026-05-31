@@ -117,6 +117,7 @@
   .hero-line {
     position: absolute; right: 0; top: 0; bottom: 0; width: 1px;
     background: linear-gradient(to bottom, transparent, var(--red), transparent); opacity: 0.3;
+    pointer-events: none;
   }
   .hero-grid-lines {
     position: absolute; inset: 0;
@@ -125,6 +126,7 @@
       linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
     background-size: 80px 80px;
     transform: perspective(600px) rotateX(10deg); transform-origin: bottom;
+    pointer-events: none;
   }
   .hero-number { font-size: 11px; letter-spacing: 0.2em; color: var(--red); text-transform: uppercase; margin-bottom: 24px; }
   .hero-name {
@@ -149,7 +151,7 @@
     font-size: 11px; color: var(--muted); letter-spacing: 0.1em;
     writing-mode: vertical-rl; text-orientation: mixed;
   }
-  .hero-links { display: flex; gap: 20px; margin-top: 32px; position: relative; z-index: 1; }
+  .hero-links { display: flex; gap: 20px; margin-top: 32px; position: relative; z-index: 3; }
   .hero-link {
     font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--muted); text-decoration: none; transition: color 0.2s;
@@ -181,6 +183,9 @@
     padding: 5px 12px; border: 1px solid var(--border); color: var(--muted); transition: all 0.2s;
   }
   .skill-tag:hover { border-color: var(--red); color: var(--red); }
+
+  /* EDITING & GRAPHIC DESIGN */
+  #editing { background: var(--black); padding: 120px 48px; position: relative; }
 
   /* TEAM SECTION */
   #team { background: var(--black); padding: 120px 48px; }
@@ -217,7 +222,6 @@
   .team-logo-svg {
     width: 180px; height: 180px;
   }
-  .team-content {}
   .team-heading {
     font-family: var(--serif); font-size: clamp(36px, 4vw, 56px);
     font-weight: 300; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 24px;
@@ -357,7 +361,7 @@
   /* Scroll progress */
   .traveling-line {
     position: fixed; left: 0; top: 0; width: 2px;
-    background: var(--red); opacity: 0.6; z-index: 50;
+    background: var(--red); opacity: 0.6; z-index: 50; pointer-events: none;
   }
 
   /* Reveal */
@@ -429,7 +433,7 @@
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
     .nav-links { display: none; }
-    #hero, #about, #projects, #contact { padding: 80px 24px; }
+    #hero, #about, #projects, #editing, #contact { padding: 80px 24px; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; }
     .project-card { grid-template-columns: 40px 1fr; }
@@ -622,9 +626,42 @@
   </div>
 </section>
 
+<!-- EDITING & GRAPHIC DESIGN -->
+<section id="editing">
+  <p class="section-label">005 / Editing &amp; Graphic Design</p>
+  <div class="about-grid">
+    <div class="reveal">
+      <h2 class="about-heading">Video cuts.<br><em>Visual</em><br>stories.</h2>
+    </div>
+    <div>
+      <p class="about-text reveal reveal-delay-1">
+        I’ve been editing for 10+ years, shaping content for pace, clarity, and impact across short-form, long-form, and branded visuals.
+      </p>
+      <p class="about-text reveal reveal-delay-2">
+        My workflow spans DaVinci Resolve, Adobe Photoshop, Adobe Premiere Pro, GIMP, and Canva for editing, retouching, compositing, and design work.
+      </p>
+      <div class="skills-section reveal reveal-delay-3">
+        <p class="skills-group-label">Tools</p>
+        <div class="skills-list">
+          <span class="skill-tag">DaVinci Resolve</span>
+          <span class="skill-tag">Adobe Photoshop</span>
+          <span class="skill-tag">Adobe Premiere Pro</span>
+          <span class="skill-tag">GIMP</span>
+          <span class="skill-tag">Canva</span>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-4" style="margin-top: 28px;">
+        <a href="https://www.youtube.com/@warkasai7558" target="_blank" rel="noreferrer" class="contact-link">
+          <span>YouTube Channel</span><span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
-  <p class="section-label">005 / Contact</p>
+  <p class="section-label">006 / Contact</p>
   <div class="contact-grid">
     <div class="reveal">
       <h2 class="contact-heading">Let's<br>build<br>some<em>thing.</em></h2>
