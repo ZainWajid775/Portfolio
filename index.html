@@ -66,6 +66,14 @@
     display: flex; justify-content: space-between; align-items: center;
     background: linear-gradient(to bottom, var(--black), transparent);
   }
+  .nav-toggle {
+    display: none; background: transparent; border: 1px solid var(--border);
+    color: var(--muted); padding: 8px 12px; border-radius: 8px; cursor: none;
+    font-size: 18px;
+  }
+  .nav.open .nav-links {
+    display: flex; flex-direction: column; position: absolute; left: 0; right: 0; top: 64px; background: linear-gradient(180deg, rgba(10,10,10,0.96), rgba(10,10,10,0.98)); padding: 18px 24px; gap: 12px; z-index: 300;
+  }
   .nav-logo {
     font-family: var(--serif); font-size: 22px; font-weight: 300;
     letter-spacing: 0.05em; color: var(--text); text-decoration: none;
@@ -565,6 +573,43 @@
     .stats-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
   }
+  /* Touch / small-pointer adjustments */
+  @media (hover: none), (pointer: coarse) {
+    /* hide custom cursor on touch devices */
+    #cursor, #cursor-ring { display: none !important; }
+    body { cursor: auto !important; }
+
+    /* disable hover-only transforms and provide tap-to-expand behaviour */
+    .project-card:hover { transform: none; box-shadow: none; border-color: transparent; }
+    .project-card::after, .project-card::before { transition: none; }
+
+    /* default stacked project layout for touch screens */
+    .projects-grid { grid-auto-rows: auto; }
+    .project-card { display: block; padding: 20px; border-radius: 16px; margin-bottom: 12px; }
+    .project-card .project-number { display: block; margin-bottom: 10px; }
+    .project-card .project-body { padding: 0 0 12px 0; }
+    .project-card .project-image-wrap { display: none; margin-bottom: 12px; }
+
+    /* expanded state when user taps a project */
+    .project-card.expanded { transform: none; background: var(--surface); border: 1px solid rgba(192,57,43,0.85); box-shadow: 0 6px 30px rgba(0,0,0,0.6); z-index: 4; }
+    .project-card.expanded .project-image-wrap { display: block; min-height: 160px; margin-bottom: 14px; }
+    .project-card.expanded::after { opacity: 1; transform: translateX(0); }
+    .project-card.expanded::before { width: 2px; }
+
+    /* smaller hero text on compact devices */
+    .hero-name { font-size: clamp(28px, 8vw, 56px); }
+    .hero-tagline { font-size: 13px; max-width: 100%; }
+
+    /* mobile nav toggle */
+    .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  }
+
+  @media (max-width: 420px) {
+    .hero-name { font-size: clamp(22px, 10vw, 40px); }
+    .projects-heading { font-size: clamp(28px, 8vw, 40px); }
+    #hero { padding: 64px 18px 60px; }
+    #about, #projects, #editing, #team, #contact { padding: 60px 18px; }
+  }
 </style>
 </head>
 <body>
@@ -580,6 +625,7 @@
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">Zain <em>Wajid</em></a>
+  <button id="navToggle" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#projects">Work</a>
@@ -1176,6 +1222,45 @@ if (projects.length === 0) {
 } else { renderProjects(); }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeLoginModal(); } });
+
+// --- MOBILE / TOUCH HELPERS ---
+// nav toggle for small screens
+try {
+  const navEl = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navEl.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+      navEl.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  // tap-to-expand projects on touch devices
+  const projectsGridEl = document.getElementById('projectsGrid');
+  if (projectsGridEl) {
+    projectsGridEl.addEventListener('click', (ev) => {
+      if (window.innerWidth > 900) return; // only for small screens
+      const card = ev.target.closest('.project-card');
+      if (!card) return;
+      // If clicked a link or button inside card, let it act normally
+      if (ev.target.closest('a') || ev.target.closest('button')) return;
+      // toggle expanded, collapse others
+      const already = card.classList.toggle('expanded');
+      document.querySelectorAll('.project-card.expanded').forEach(c => { if (c !== card) c.classList.remove('expanded'); });
+      // keep the tapped card briefly in view
+      if (already) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  // Pause heavy background video on small screens to save data
+  const aboutVideo = document.querySelector('.about-bg-video');
+  if (aboutVideo && window.matchMedia('(max-width:600px)').matches) {
+    try { aboutVideo.pause(); aboutVideo.removeAttribute('autoplay'); } catch(e) { /* noop */ }
+  }
+} catch (err) { console.warn('mobile helpers failed', err); }
 </script>
 </body>
 </html>
