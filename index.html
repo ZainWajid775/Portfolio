@@ -280,7 +280,7 @@
   .team-logo-wrap {
     display: flex; align-items: center; justify-content: center;
     border: 1px solid rgba(255,255,255,0.1); padding: 48px;
-    position: relative; overflow: hidden; min-height: 280px; border-radius: 28px;
+    position: relative; overflow: hidden; min-height: 380px; border-radius: 28px;
     background: rgba(0,0,0,0.34); backdrop-filter: blur(6px);
   }
   .team-logo-wrap::before {
@@ -295,13 +295,13 @@
     text-align: center;
   }
   .team-logo-img {
-    max-width: 100%; max-height: 200px; object-fit: contain;
+    max-width: 100%; max-height: 320px; object-fit: contain;
     filter: grayscale(20%); opacity: 0.9;
     transition: opacity 0.3s;
   }
   .team-logo-img:hover { opacity: 1; }
   .team-logo-svg {
-    width: 180px; height: 180px;
+    width: 280px; height: 280px;
   }
   .team-heading {
     font-family: var(--serif); font-size: clamp(36px, 4vw, 56px);
@@ -650,11 +650,11 @@
   </div>
   <!-- Profile photo — served from repo, works on every device -->
   <div class="hero-photo-wrap" id="heroPhotoWrap">
-    <img id="heroPhotoImg" src="images/profile.jpg" alt="Zain Wajid"
+    <img id="heroPhotoImg" src="images/profile.png" alt="Zain Wajid"
          onerror="this.style.display='none'; document.getElementById('heroPhotoPlaceholder').style.display='flex';">
     <div class="hero-photo-placeholder" id="heroPhotoPlaceholder" style="display:none">
       <span style="font-size:28px;opacity:0.3">◻</span>
-      <span>images/profile.jpg</span>
+      <span>images/profile.png</span>
     </div>
   </div>
 
@@ -878,12 +878,12 @@ const projects = [
   { title: "System Resource Monitor", tags: ["C", "Bash", "Ubuntu", "Linux"], year: "2023", desc: "Lightweight Linux monitoring tool using system calls to track RAM, CPU, processes, and uptime in real time. Optimised for minimal overhead on low-resource systems.", url: "https://github.com/ZainWajid775/OS_System_Resource_Monitor", image: "images/projects/resource-monitor.jpg" },
   { title: "PULSE - Engine Health Intelligence", tags: ["Python", "HTML", "CSS", "D3.JS"], year: "2023", desc: "An interactive data storytelling and web visualization project that analyzes 19,535 industrial engine telemetry logs. Built with D3.js, the platform utilizes scrollytelling to uncover hidden multi-sensor patterns—such as RPM spikes and fuel pressure drops—that differentiate healthy engines from those facing imminent mechanical faults.", url: "https://zainwajid775.github.io/DS-351-Project/", image: "images/projects/pulse.jpg" },
   { title: "PowerBI LA Crime Dashboard", tags: ["Python", "HTML", "CSS", "D3.JS"], year: "2023", desc: "Developed an interactive, end-to-end business intelligence solution in Power BI to analyze urban crime patterns across Los Angeles. By processing extensive law enforcement datasets, the dashboard uncovers critical trends in criminal behavior, high-risk geographic hotspots, weapon usage, and temporal spikes (such as hourly and seasonal variations). Designed specifically to aid strategic public safety decisions, the project leverages advanced Power BI features—including complex DAX measures, dynamic Row-Level Security (RLS) for role-based access, and interactive cross-filtering—to transform raw municipal data into actionable, executive-ready insights.", url: "", image: "" },
-  { title: "Pong", tags: ["Unity" , "C#"], year: "2025", desc: "Reimagined the classic Pong with a modern twist, transforming an arcade staple into a polished, high-fidelity Unity project. Implemented adaptive AI difficulty, seamless UI transitions, audio enhancements, and full game state control via C#. A hands-on dive into full-cycle game development, balancing technical execution with creative game feel.", url: "https://github.com/ZainWajid775/Pong", image: "pong.jpg" },
+  { title: "Pong", tags: ["Unity" , "C#"], year: "2025", desc: "Reimagined the classic Pong with a modern twist, transforming an arcade staple into a polished, high-fidelity Unity project. Implemented adaptive AI difficulty, seamless UI transitions, audio enhancements, and full game state control via C#. A hands-on dive into full-cycle game development, balancing technical execution with creative game feel.", url: "https://github.com/ZainWajid775/Pong", image: "images/projects/pong.jpg" },
   { title: "Satellite Flood Warning System", tags: ["Python", "OpenCV", "Streamlit", "ML"], year: "2024", desc: "Transformed raw NASA GeoTIFF satellite imagery into ML features using raster preprocessing pipelines. Applied Logistic Regression achieving ~95% prediction accuracy on historical data, with an interactive Streamlit dashboard for disaster response.", url: "", image: "" },
-  { title: "Sentiment Analysis App", tags: ["Python" , "Streamlit"], year: "2024", desc: "An interactive Natural Language Processing web app built with Streamlit that performs real-time sentiment analysis on user text. Features data cleaning pipelines, TF-IDF vectorization, and a dynamic feedback loop that allows the model to learn and improve from user corrections. Demonstrates the deployment of adaptive machine learning models into clean, responsive web interfaces.", url: "https://app-nlp-app-aykwypqkbasjpzsvvzozsp.streamlit.app", image: "sentiment.jpg" },
-  { title: "RISCV - Single Cycle Processor", tags: ["RISCV" , "Vivado" , "Verilog"], year: "2024", desc: "Co-developed a fully functional 32-bit single-cycle RISC-V processor using Verilog and simulated the architecture within Xilinx Vivado. Architected the complete control logic and datapath, integrating the ALU, register file, immediate generator, and memory modules to support multiple instruction formats (R, I, S, B, U). Validated execution accuracy and timing alignment through rigorous modular testing and waveform simulations.", url: "https://github.com/ZainWajid775/RISCV-Single-Cycle-Processor", image: "processor.jpg" },
-  { title: "Airport Management System", tags: ["Python" , "Flask" , "PostgreSQL"], year: "2024", desc: "Engineered a robust relational Airport Management System (AMS) using PostgreSQL to streamline flights, bookings, airlines, and staff operations. Leveraged core DBMS principles, data normalization, and strict referential integrity to build a fully connected, high-performance schema. Implemented advanced SQL queries to deliver real-time operational insights, tracking passenger trends and revenue for business intelligence.", url: "https://github.com/ZainWajid775/Airport-Managment-System", image: "airport.jpg" },
-  { title: "Vehicle Traffic Simulation System", tags: ["C++" , "DSA"], year: "2024", desc: "Engineered an intuitive traffic management system that models interconnected city road networks using advanced graph data structures. Integrated file handling mechanisms for persistent data storage and real-time retrieval of dynamic vehicle and road metrics. Combined core DSA concepts—including hash maps, arrays, and foundational algorithms—to deliver a robust, user-centric software solution.", url: "https://github.com/ZainWajid775/Vehicle-Traffic-Management-System", image: "traffic.jpg" }
+  { title: "Sentiment Analysis App", tags: ["Python" , "Streamlit"], year: "2024", desc: "An interactive Natural Language Processing web app built with Streamlit that performs real-time sentiment analysis on user text. Features data cleaning pipelines, TF-IDF vectorization, and a dynamic feedback loop that allows the model to learn and improve from user corrections. Demonstrates the deployment of adaptive machine learning models into clean, responsive web interfaces.", url: "https://app-nlp-app-aykwypqkbasjpzsvvzozsp.streamlit.app", image: "images/projects/sentiment.jpg" },
+  { title: "RISCV - Single Cycle Processor", tags: ["RISCV" , "Vivado" , "Verilog"], year: "2024", desc: "Co-developed a fully functional 32-bit single-cycle RISC-V processor using Verilog and simulated the architecture within Xilinx Vivado. Architected the complete control logic and datapath, integrating the ALU, register file, immediate generator, and memory modules to support multiple instruction formats (R, I, S, B, U). Validated execution accuracy and timing alignment through rigorous modular testing and waveform simulations.", url: "https://github.com/ZainWajid775/RISCV-Single-Cycle-Processor", image: "images/projects/processor.jpg" },
+  { title: "Airport Management System", tags: ["Python" , "Flask" , "PostgreSQL"], year: "2024", desc: "Engineered a robust relational Airport Management System (AMS) using PostgreSQL to streamline flights, bookings, airlines, and staff operations. Leveraged core DBMS principles, data normalization, and strict referential integrity to build a fully connected, high-performance schema. Implemented advanced SQL queries to deliver real-time operational insights, tracking passenger trends and revenue for business intelligence.", url: "https://github.com/ZainWajid775/Airport-Managment-System", image: "images/projects/airport.jpg" },
+  { title: "Vehicle Traffic Simulation System", tags: ["C++" , "DSA"], year: "2024", desc: "Engineered an intuitive traffic management system that models interconnected city road networks using advanced graph data structures. Integrated file handling mechanisms for persistent data storage and real-time retrieval of dynamic vehicle and road metrics. Combined core DSA concepts—including hash maps, arrays, and foundational algorithms—to deliver a robust, user-centric software solution.", url: "https://github.com/ZainWajid775/Vehicle-Traffic-Management-System", image: "images/projects/traffic.jpg" }
 ];
 
 function renderProjects() {
