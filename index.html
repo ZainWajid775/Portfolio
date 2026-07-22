@@ -280,7 +280,7 @@
   .team-logo-wrap {
     display: flex; align-items: center; justify-content: center;
     border: 1px solid rgba(255,255,255,0.1); padding: 48px;
-    position: relative; overflow: hidden; min-height: 380px; border-radius: 28px;
+    position: relative; overflow: hidden; min-height: 580px; border-radius: 28px;
     background: rgba(0,0,0,0.34); backdrop-filter: blur(6px);
   }
   .team-logo-wrap::before {
@@ -295,13 +295,13 @@
     text-align: center;
   }
   .team-logo-img {
-    max-width: 100%; max-height: 320px; object-fit: contain;
+    max-width: 100%; max-height: 520px; object-fit: contain;
     filter: grayscale(20%); opacity: 0.9;
     transition: opacity 0.3s;
   }
   .team-logo-img:hover { opacity: 1; }
   .team-logo-svg {
-    width: 280px; height: 280px;
+    width: 680px; height: 680px;
   }
   .team-heading {
     font-family: var(--serif); font-size: clamp(36px, 4vw, 56px);
@@ -919,9 +919,12 @@ function renderProjects() {
 // in images/certifications/ or images/awards/ for a background image, or
 // leave it "" to get a plain tile with a badge icon in the middle.
 const certifications = [
-  { title: "AWS Cloud Practitioner", sub: "Amazon Web Services · 2025", image: "images/certifications/aws-cloud-practitioner.jpg", url: "" },
-  { title: "Machine Learning Specialization", sub: "DeepLearning.AI · 2024", image: "images/certifications/ml-specialization.jpg", url: "" },
-  { title: "SQL for Data Science", sub: "Coursera · 2023", image: "", url: "" }
+  { title: "AWS Cloud Practitioner Essential", sub: "Amazon Web Services · 2026", image: "images/certifications/Cloud practioner essentials.pdf", url: "" },
+  { title: "AWS Aurora", sub: "Amazon Web Services · 2026", image: "images/certifications/amazon aurora.pdf", url: "" },
+  { title: "Introduction to LLMs", sub: "IBM · 2026", image: "images/certifications/IBM_LLM.png", url: "" },
+  { title: "Visual C++ for Desktop Applications", sub: "Coursera · 2024", image: "images/certifications/visualc++", url: "" },
+  { title: "Python 101 for Data Science", sub: "Cognitive Class · 2024", image: "images/certifications/IBM_PY101.png", url: "" }
+
 ];
 
 const awards = [
