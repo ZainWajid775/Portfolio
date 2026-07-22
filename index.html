@@ -410,6 +410,67 @@
     border: 1px dashed var(--border);
   }
 
+  /* CERTIFICATIONS & AWARDS */
+  #certifications { background: var(--black); padding: 120px 48px; }
+  #awards { background: var(--off-black); padding: 120px 48px; }
+  .cert-heading { font-family: var(--serif); font-size: clamp(36px, 5vw, 72px); font-weight: 300; line-height: 1; letter-spacing: -0.02em; margin-bottom: 64px; }
+  .cert-heading em { color: var(--red); font-style: italic; }
+
+  .cert-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .cert-tile {
+    position: relative; aspect-ratio: 4 / 3; border-radius: 28px; overflow: hidden;
+    border: 1px solid rgba(192,57,43,0); background: var(--surface);
+    display: flex; align-items: center; justify-content: center; isolation: isolate;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .cert-tile:hover {
+    transform: scale(1.06); z-index: 2;
+    border-color: rgba(192,57,43,0.85);
+    box-shadow: 0 0 0 1px rgba(192,57,43,0.14), 0 0 30px rgba(192,57,43,0.12);
+  }
+  .cert-tile-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;
+    opacity: 0.5; filter: grayscale(25%);
+    transition: transform 0.5s, opacity 0.3s;
+  }
+  .cert-tile:hover .cert-tile-bg { transform: scale(1.14); opacity: 0.72; }
+  .cert-tile-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.82) 100%);
+  }
+  .cert-tile-noimg {
+    background: radial-gradient(ellipse at center, rgba(192,57,43,0.08) 0%, var(--surface) 72%);
+  }
+  .cert-badge {
+    width: 52px; height: 52px; margin: 0 auto 18px; opacity: 0.55;
+    transition: opacity 0.3s, transform 0.5s;
+  }
+  .cert-tile:hover .cert-badge { opacity: 0.85; transform: scale(1.08); }
+  .cert-tile-content {
+    position: relative; z-index: 1; text-align: center; padding: 28px;
+  }
+  .cert-tile-title {
+    font-family: var(--serif); font-size: clamp(18px, 2vw, 25px); font-weight: 300;
+    letter-spacing: -0.01em; line-height: 1.2; color: var(--text);
+  }
+  .cert-tile-title em { color: var(--red); font-style: italic; }
+  .cert-tile-sub {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-top: 12px;
+  }
+  .cert-empty { color: var(--muted); font-size: 12px; text-align: center; padding: 40px 0; display: none; }
+  @media (max-width: 900px) {
+    .cert-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .cert-grid { grid-template-columns: 1fr; }
+  }
+  @media (hover: none), (pointer: coarse) {
+    .cert-tile:hover { transform: none; box-shadow: none; border-color: transparent; }
+  }
+
   /* CONTACT */
   #contact { background: var(--off-black); padding: 120px 48px; }
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -532,6 +593,8 @@
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#projects">Work</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#awards">Awards</a>
     <a href="#team">Racing</a>
     <a href="#contact">Contact</a>
   </div>
@@ -587,11 +650,11 @@
   </div>
   <!-- Profile photo — served from repo, works on every device -->
   <div class="hero-photo-wrap" id="heroPhotoWrap">
-    <img id="heroPhotoImg" src="images/profile.png" alt="Zain Wajid"
+    <img id="heroPhotoImg" src="images/profile.jpg" alt="Zain Wajid"
          onerror="this.style.display='none'; document.getElementById('heroPhotoPlaceholder').style.display='flex';">
     <div class="hero-photo-placeholder" id="heroPhotoPlaceholder" style="display:none">
       <span style="font-size:28px;opacity:0.3">◻</span>
-      <span>images/profile.png</span>
+      <span>images/profile.jpg</span>
     </div>
   </div>
 
@@ -660,7 +723,7 @@
   <div class="projects-header reveal">
     <div>
       <p class="section-label" style="margin-bottom:16px">003 / Work</p>
-      <h2 class="projects-heading">Projects</h2>
+      <h2 class="projects-heading">Selected<br>Projects</h2>
     </div>
   </div>
   <div class="projects-grid" id="projectsGrid"></div>
@@ -669,10 +732,27 @@
   </p>
 </section>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label" style="margin-bottom:16px">004 / Credentials</p>
+  <h2 class="cert-heading">Certifi<em>cations</em></h2>
+  <div class="cert-grid" id="certGrid"></div>
+  <p class="cert-empty" id="certEmpty">No certifications yet.</p>
+  <template id="certBadgeTemplate"><svg class="cert-badge" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="26" r="16" stroke="#C0392B" stroke-width="1.5"/><circle cx="32" cy="26" r="10" stroke="#C0392B" stroke-width="1" opacity="0.5"/><path d="M23 38 L18 58 L32 50 L46 58 L41 38" stroke="#C0392B" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg></template>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <p class="section-label" style="margin-bottom:16px">005 / Recognition</p>
+  <h2 class="cert-heading">A<em>wards</em></h2>
+  <div class="cert-grid" id="awardsGrid"></div>
+  <p class="cert-empty" id="awardsEmpty">No awards yet.</p>
+</section>
+
 <!-- TEAM INFINITY -->
 <section id="team" class="reveal">
   <div class="team-sweep" aria-hidden="true">→</div>
-  <p class="section-label">004 / Beyond the Screen</p>
+  <p class="section-label">006 / Beyond the Screen</p>
   <div class="team-inner">
     <div class="team-logo-wrap reveal">
       <div class="team-logo-placeholder" id="teamLogoPlaceholder">
@@ -724,7 +804,7 @@
 
 <!-- EDITING & GRAPHIC DESIGN -->
 <section id="editing" class="reveal">
-  <p class="section-label">005 / Editing &amp; Graphic Design</p>
+  <p class="section-label">007 / Editing &amp; Graphic Design</p>
   <div class="editing-card">
     <div class="about-grid">
       <div class="reveal">
@@ -759,7 +839,7 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <p class="section-label">006 / Contact</p>
+  <p class="section-label">008 / Contact</p>
   <div class="contact-grid">
     <div class="reveal">
       <h2 class="contact-heading">Let's<br>build<br>some<em>thing.</em></h2>
@@ -834,6 +914,57 @@ function renderProjects() {
   document.querySelectorAll('.project-card.reveal').forEach(el => { el.classList.remove('visible'); observer.observe(el); });
 }
 
+// ── CERTIFICATIONS & AWARDS DATA ──
+// Same idea as `projects` above: one object per tile. Set `image` to a path
+// in images/certifications/ or images/awards/ for a background image, or
+// leave it "" to get a plain tile with a badge icon in the middle.
+const certifications = [
+  { title: "AWS Cloud Practitioner", sub: "Amazon Web Services · 2025", image: "images/certifications/aws-cloud-practitioner.jpg", url: "" },
+  { title: "Machine Learning Specialization", sub: "DeepLearning.AI · 2024", image: "images/certifications/ml-specialization.jpg", url: "" },
+  { title: "SQL for Data Science", sub: "Coursera · 2023", image: "", url: "" }
+];
+
+const awards = [
+  { title: "FSUK Best Newcomer", sub: "Formula Student UK · 2025", image: "images/awards/fsuk-best-newcomer.jpg", url: "" },
+  { title: "SMME Piston Cup — Top 10", sub: "SMME · 2024", image: "", url: "" }
+];
+
+const CERT_BADGE_SVG = `
+  <svg class="cert-badge" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="32" cy="26" r="16" stroke="#C0392B" stroke-width="1.5"/>
+    <circle cx="32" cy="26" r="10" stroke="#C0392B" stroke-width="1" opacity="0.5"/>
+    <path d="M23 38 L18 58 L32 50 L46 58 L41 38" stroke="#C0392B" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  </svg>`;
+
+function renderCertGrid(items, gridId, emptyId) {
+  const grid = document.getElementById(gridId);
+  const empty = document.getElementById(emptyId);
+  if (!grid) return;
+  if (!items || items.length === 0) { grid.innerHTML = ''; if (empty) empty.style.display = 'block'; return; }
+  if (empty) empty.style.display = 'none';
+  grid.innerHTML = items.map((c, i) => {
+    const tileId = `${gridId}-tile-${i}`;
+    const inner = `
+      <div class="cert-tile-content" id="${tileId}-content">
+        ${!c.image ? CERT_BADGE_SVG : ''}
+        <h3 class="cert-tile-title">${c.title}</h3>
+        ${c.sub ? `<p class="cert-tile-sub">${c.sub}</p>` : ''}
+      </div>`;
+    const tileBody = c.image
+      ? `<img class="cert-tile-bg" src="${c.image}" alt=""
+             onerror="this.remove(); document.getElementById('${tileId}').closest('.cert-tile').classList.add('cert-tile-noimg'); document.getElementById('${tileId}-content').insertAdjacentHTML('afterbegin', document.getElementById('certBadgeTemplate').innerHTML);">
+         <div class="cert-tile-overlay"></div>${inner}`
+      : inner;
+    const tileClass = c.image ? 'cert-tile' : 'cert-tile cert-tile-noimg';
+    const openTag = c.url
+      ? `<a href="${c.url}" target="_blank" id="${tileId}" class="${tileClass} reveal" style="transition-delay:${i * 0.06}s;text-decoration:none;">`
+      : `<div id="${tileId}" class="${tileClass} reveal" style="transition-delay:${i * 0.06}s">`;
+    const closeTag = c.url ? `</a>` : `</div>`;
+    return openTag + tileBody + closeTag;
+  }).join('');
+  grid.querySelectorAll('.reveal').forEach(el => { el.classList.remove('visible'); observer.observe(el); });
+}
+
 // ── CURSOR ──
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
@@ -875,6 +1006,8 @@ function playHeroMotion() {
 
 playHeroMotion();
 renderProjects();
+renderCertGrid(certifications, 'certGrid', 'certEmpty');
+renderCertGrid(awards, 'awardsGrid', 'awardsEmpty');
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { /* no-op, modals removed */ } });
 
