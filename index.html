@@ -228,7 +228,7 @@
   }
   #editing::before {
     content: ''; position: absolute; inset: 0;
-    background-image: url('edit_img.jpg');
+    background-image: url('images/edit_img.jpg');
     background-size: cover; background-position: center;
     transform: scale(1.04);
     z-index: 0;
@@ -251,7 +251,7 @@
   }
   #team::before {
     content: ''; position: absolute; inset: 0;
-    background-image: url('team_img.png');
+    background-image: url('images/team_img.png');
     background-size: cover; background-position: center;
     transform: scale(1.06);
     clip-path: inset(0 100% 0 0);
@@ -300,15 +300,6 @@
     transition: opacity 0.3s;
   }
   .team-logo-img:hover { opacity: 1; }
-  .team-logo-upload-wrap { display: none; }
-  .team-logo-upload-wrap.admin-visible { display: block; margin-top: 16px; text-align: center; }
-  .team-logo-upload-btn {
-    background: transparent; border: 1px dashed var(--border); color: var(--muted);
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 8px 16px; cursor: none; transition: all 0.2s; position: relative;
-  }
-  .team-logo-upload-btn:hover { border-color: var(--red); color: var(--red); }
-  .team-logo-upload-btn input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
   .team-logo-svg {
     width: 180px; height: 180px;
   }
@@ -346,32 +337,12 @@
     gap: 10px; border: 1px dashed var(--border);
     color: var(--muted); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
   }
-  .hero-photo-upload {
-    display: none; position: absolute; bottom: 0; left: 0; right: 0;
-    background: rgba(0,0,0,0.7); padding: 10px; text-align: center;
-  }
-  .hero-photo-upload.admin-visible { display: block; }
-  .hero-photo-upload-btn {
-    background: transparent; border: 1px solid var(--border); color: var(--muted);
-    font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 6px 12px; cursor: none; position: relative; transition: all 0.2s;
-  }
-  .hero-photo-upload-btn:hover { border-color: var(--red); color: var(--red); }
-  .hero-photo-upload-btn input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
   @media (max-width: 900px) { .hero-photo-wrap { display: none; } }
 
   /* PROJECTS */
   #projects { background: var(--black); padding: 120px 48px; }
   .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
   .projects-heading { font-family: var(--serif); font-size: clamp(36px, 5vw, 72px); font-weight: 300; line-height: 1; letter-spacing: -0.02em; }
-  .add-project-btn {
-    display: flex; align-items: center; gap: 8px;
-    background: transparent; border: 1px solid var(--red); color: var(--red);
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 10px 20px; cursor: none; transition: all 0.2s; white-space: nowrap; display: none;
-  }
-  .add-project-btn:hover { background: var(--red); color: var(--text); }
-  .add-project-btn.visible { display: flex; }
 
   .projects-grid { display: grid; gap: 1px; background: var(--border); }
   .project-card {
@@ -438,14 +409,6 @@
     color: var(--muted); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
     border: 1px dashed var(--border);
   }
-  .project-actions { display: none; flex-direction: column; gap: 8px; padding-top: 2px; }
-  .project-actions.admin-visible { display: flex; }
-  .project-edit-btn, .project-delete-btn {
-    background: transparent; border: none; color: var(--muted);
-    font-size: 15px; cursor: none; transition: color 0.2s; padding: 4px; line-height: 1;
-  }
-  .project-edit-btn:hover { color: var(--text); }
-  .project-delete-btn:hover { color: var(--red); }
 
   /* CONTACT */
   #contact { background: var(--off-black); padding: 120px 48px; }
@@ -492,62 +455,6 @@
   .reveal-delay-4 { transition-delay: 0.4s; }
   .parallax-slow { will-change: transform; }
   .parallax-mid { will-change: transform; }
-
-  /* MODAL */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 500;
-    display: flex; align-items: center; justify-content: center;
-    backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity 0.3s;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal {
-    background: var(--off-black); border: 1px solid var(--border);
-    width: 580px; max-width: calc(100vw - 48px); max-height: 90vh;
-    overflow-y: auto; padding: 48px;
-    transform: translateY(20px); transition: transform 0.3s; position: relative;
-  }
-  .modal-overlay.open .modal { transform: translateY(0); }
-  .modal-title { font-family: var(--serif); font-size: 32px; font-weight: 300; margin-bottom: 32px; letter-spacing: -0.01em; }
-  .modal-title em { color: var(--red); font-style: italic; }
-  .modal-close {
-    position: absolute; top: 20px; right: 20px; background: transparent;
-    border: none; color: var(--muted); font-size: 18px; cursor: none; transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--red); }
-  .form-group { margin-bottom: 18px; }
-  label { display: block; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
-  input[type="text"], input[type="url"], textarea {
-    width: 100%; background: var(--surface); border: 1px solid var(--border);
-    color: var(--text); font-family: var(--mono); font-size: 12px;
-    padding: 11px 14px; outline: none; transition: border-color 0.2s; resize: none;
-  }
-  input[type="text"]:focus, input[type="url"]:focus, textarea:focus { border-color: var(--red); }
-  textarea { height: 90px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .image-upload-area {
-    border: 1px dashed var(--border); padding: 28px; text-align: center;
-    cursor: none; transition: border-color 0.2s; position: relative;
-  }
-  .image-upload-area:hover { border-color: var(--red); }
-  .image-upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-  .upload-label { color: var(--muted); font-size: 11px; letter-spacing: 0.1em; }
-  .upload-label span { color: var(--red); }
-  .preview-img { max-width: 100%; max-height: 150px; object-fit: cover; margin-top: 12px; display: none; }
-  .submit-btn {
-    width: 100%; background: var(--red); border: none; color: var(--text);
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    padding: 15px; cursor: none; margin-top: 8px; transition: background 0.2s;
-  }
-  .submit-btn:hover { background: var(--red-dim); }
-
-  /* LOGIN MODAL */
-  .login-modal {
-    background: var(--off-black); border: 1px solid var(--border);
-    width: 360px; max-width: calc(100vw - 48px); padding: 40px;
-    transform: translateY(20px); transition: transform 0.3s; position: relative;
-  }
-  .modal-overlay.open .login-modal { transform: translateY(0); }
-  .login-error { color: var(--red); font-size: 11px; letter-spacing: 0.08em; margin-top: 10px; min-height: 18px; }
 
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
@@ -618,10 +525,6 @@
 <div id="cursor-ring"></div>
 <div class="traveling-line" id="scrollLine"></div>
 
-<!-- Hidden admin trigger — visitors see nothing -->
-<button id="adminHint" onclick="openLoginModal()" title="">⚙</button>
-<div id="adminBadge">Admin Mode</div>
-
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">Zain <em>Wajid</em></a>
@@ -632,7 +535,6 @@
     <a href="#team">Racing</a>
     <a href="#contact">Contact</a>
   </div>
-  <button class="nav-admin-btn" id="navAdminBtn" onclick="openModal()">+ Add Project</button>
 </nav>
 
 <!-- HERO -->
@@ -683,18 +585,13 @@
     <a href="https://linkedin.com/in/zain-wajid-5978462a0" target="_blank" class="hero-link">LinkedIn</a>
     <a href="mailto:zainwajid747@gmail.com" class="hero-link">Email</a>
   </div>
-  <!-- Profile photo -->
+  <!-- Profile photo — served from repo, works on every device -->
   <div class="hero-photo-wrap" id="heroPhotoWrap">
-    <div class="hero-photo-placeholder" id="heroPhotoPlaceholder">
+    <img id="heroPhotoImg" src="images/profile.png" alt="Zain Wajid"
+         onerror="this.style.display='none'; document.getElementById('heroPhotoPlaceholder').style.display='flex';">
+    <div class="hero-photo-placeholder" id="heroPhotoPlaceholder" style="display:none">
       <span style="font-size:28px;opacity:0.3">◻</span>
-      <span>Your Photo</span>
-    </div>
-    <img id="heroPhotoImg" src="" alt="Zain Wajid" style="display:none">
-    <div class="hero-photo-upload" id="heroPhotoUpload">
-      <button class="hero-photo-upload-btn">
-        <input type="file" accept="image/*" onchange="handlePhotoUpload(event)">
-        Change Photo
-      </button>
+      <span>images/profile.png</span>
     </div>
   </div>
 
@@ -708,7 +605,7 @@
 <!-- ABOUT -->
 <section id="about">
   <video class="about-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-    <source src="section2_vid.mp4" type="video/mp4">
+    <source src="images/section2_vid.mp4" type="video/mp4">
   </video>
   <p class="section-label">002 / About</p>
   <div class="about-grid">
@@ -763,11 +660,8 @@
   <div class="projects-header reveal">
     <div>
       <p class="section-label" style="margin-bottom:16px">003 / Work</p>
-      <h2 class="projects-heading">Selected<br>Projects</h2>
+      <h2 class="projects-heading">Projects</h2>
     </div>
-    <button class="add-project-btn" id="addProjectBtn" onclick="openModal()">
-      <span style="font-size:16px;line-height:1">+</span> Add Project
-    </button>
   </div>
   <div class="projects-grid" id="projectsGrid"></div>
   <p id="emptyState" style="color:var(--muted);font-size:12px;text-align:center;padding:60px 0;display:none;">
@@ -782,21 +676,17 @@
   <div class="team-inner">
     <div class="team-logo-wrap reveal">
       <div class="team-logo-placeholder" id="teamLogoPlaceholder">
-        <!-- Default SVG logo placeholder -->
-        <svg class="team-logo-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <!-- Default SVG logo, replaced automatically if images/team-logo.png exists -->
+        <svg class="team-logo-svg" id="teamLogoSvg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
           <polygon points="90,10 170,50 170,130 90,170 10,130 10,50" fill="none" stroke="rgba(192,57,43,0.4)" stroke-width="1"/>
           <polygon points="90,28 152,62 152,118 90,152 28,118 28,62" fill="none" stroke="rgba(192,57,43,0.2)" stroke-width="1"/>
           <text x="90" y="82" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="13" fill="rgba(245,240,235,0.5)" letter-spacing="3">TEAM</text>
           <text x="90" y="108" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="300" fill="#C0392B" letter-spacing="2">INFINITY</text>
           <line x1="50" y1="94" x2="130" y2="94" stroke="rgba(192,57,43,0.3)" stroke-width="0.5"/>
         </svg>
-        <img id="teamLogoImg" src="" alt="Team Infinity" class="team-logo-img" style="display:none">
-      </div>
-      <div class="team-logo-upload-wrap" id="teamLogoUploadWrap">
-        <button class="team-logo-upload-btn">
-          <input type="file" accept="image/*" onchange="handleTeamLogoUpload(event)">
-          Upload Team Logo
-        </button>
+        <img id="teamLogoImg" src="images/team-logo.png" alt="Team Infinity" class="team-logo-img" style="display:none"
+             onerror="this.style.display='none'; document.getElementById('teamLogoSvg').style.display='block';"
+             onload="this.style.display='block'; document.getElementById('teamLogoSvg').style.display='none';">
       </div>
     </div>
     <div class="team-content reveal reveal-delay-2">
@@ -896,69 +786,53 @@
   <p class="footer-right">GIKI · Data Science · <span>Lahore, PK</span></p>
 </footer>
 
-<!-- ADD/EDIT PROJECT MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <h3 class="modal-title" id="modalTitle">Add <em>Project</em></h3>
-    <div class="form-group">
-      <label>Project Title *</label>
-      <input type="text" id="projTitle" placeholder="My Project">
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Tags (comma separated)</label>
-        <input type="text" id="projTags" placeholder="Python, ML, React">
-      </div>
-      <div class="form-group">
-        <label>Year</label>
-        <input type="text" id="projYear" placeholder="2025">
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Description</label>
-      <textarea id="projDesc" placeholder="What did you build and why does it matter?"></textarea>
-    </div>
-    <div class="form-group">
-      <label>Project Image</label>
-      <div class="image-upload-area">
-        <input type="file" id="projImage" accept="image/*" onchange="handleImageUpload(event)">
-        <p class="upload-label">Drop image here or <span>browse</span></p>
-        <img class="preview-img" id="previewImg" alt="Preview">
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Project URL (optional)</label>
-      <input type="url" id="projUrl" placeholder="https://github.com/...">
-    </div>
-    <button class="submit-btn" onclick="saveProject()">Save Project</button>
-  </div>
-</div>
-
-<!-- LOGIN MODAL -->
-<div class="modal-overlay" id="loginOverlay" onclick="handleLoginOverlayClick(event)">
-  <div class="login-modal">
-    <button class="modal-close" onclick="closeLoginModal()">✕</button>
-    <h3 class="modal-title">Admin <em>Login</em></h3>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="text" id="adminPassInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkLogin()">
-    </div>
-    <button class="submit-btn" onclick="checkLogin()">Enter</button>
-    <p class="login-error" id="loginError"></p>
-  </div>
-</div>
-
 <script>
-// ── CONFIG ──
-// Change this password to something only you know
-const ADMIN_PASSWORD = 'zain2025';
+// ── PROJECT DATA ──
+// Images are referenced by path from the /images/projects folder in this repo.
+// To add/change a project: edit this array, and put the matching image file
+// in images/projects/ (or leave image: "" for no image).
+const projects = [
+  { title: "UniPulse — Event Management Platform", tags: ["AWS", "React", "PostgreSQL", "JWT"], year: "2025", desc: "Cloud-native university event platform with QR-based ticketing, multi-role auth via AWS Cognito, and deployment across EC2, Elastic Beanstalk, RDS, S3, and CloudFront.", url: "https://event-frontend-abdullah-2024.s3-website.eu-north-1.amazonaws.com", image: "images/projects/unipulse.jpg" },
+  { title: "Mental Health AI Assistant", tags: ["React", "Node.js", "PostgreSQL", "Framer Motion"], year: "2024", desc: "AI-driven wellness platform integrating therapy chatbots, mood tracking, and an expert appointment system. Built with PostgreSQL for long-term mental health trend analysis.", url: "https://spectre0037.github.io/PROJECT-DEMO/", image: "images/projects/mental-health-ai.jpg" },
+  { title: "Retail Sales Analytics & Segmentation", tags: ["Python", "Scikit-learn", "Streamlit", "K-Means"], year: "2024", desc: "End-to-end customer segmentation using RFM analysis, Apriori association rule mining, and K-Means clustering. Delivered a Streamlit dashboard visualizing KPIs and behavioral segments.", url: "https://zainwajid775-retail-sales-analysis-dashboard-dashboard-lpoaqk.streamlit.app", image: "images/projects/retail-analytics.jpg" },
+  { title: "System Resource Monitor", tags: ["C", "Bash", "Ubuntu", "Linux"], year: "2023", desc: "Lightweight Linux monitoring tool using system calls to track RAM, CPU, processes, and uptime in real time. Optimised for minimal overhead on low-resource systems.", url: "https://github.com/ZainWajid775/OS_System_Resource_Monitor", image: "images/projects/resource-monitor.jpg" },
+  { title: "PULSE - Engine Health Intelligence", tags: ["Python", "HTML", "CSS", "D3.JS"], year: "2023", desc: "An interactive data storytelling and web visualization project that analyzes 19,535 industrial engine telemetry logs. Built with D3.js, the platform utilizes scrollytelling to uncover hidden multi-sensor patterns—such as RPM spikes and fuel pressure drops—that differentiate healthy engines from those facing imminent mechanical faults.", url: "https://zainwajid775.github.io/DS-351-Project/", image: "images/projects/pulse.jpg" },
+  { title: "PowerBI LA Crime Dashboard", tags: ["Python", "HTML", "CSS", "D3.JS"], year: "2023", desc: "Developed an interactive, end-to-end business intelligence solution in Power BI to analyze urban crime patterns across Los Angeles. By processing extensive law enforcement datasets, the dashboard uncovers critical trends in criminal behavior, high-risk geographic hotspots, weapon usage, and temporal spikes (such as hourly and seasonal variations). Designed specifically to aid strategic public safety decisions, the project leverages advanced Power BI features—including complex DAX measures, dynamic Row-Level Security (RLS) for role-based access, and interactive cross-filtering—to transform raw municipal data into actionable, executive-ready insights.", url: "", image: "" },
+  { title: "Pong", tags: ["Unity" , "C#"], year: "2025", desc: "Reimagined the classic Pong with a modern twist, transforming an arcade staple into a polished, high-fidelity Unity project. Implemented adaptive AI difficulty, seamless UI transitions, audio enhancements, and full game state control via C#. A hands-on dive into full-cycle game development, balancing technical execution with creative game feel.", url: "https://github.com/ZainWajid775/Pong", image: "pong.jpg" },
+  { title: "Satellite Flood Warning System", tags: ["Python", "OpenCV", "Streamlit", "ML"], year: "2024", desc: "Transformed raw NASA GeoTIFF satellite imagery into ML features using raster preprocessing pipelines. Applied Logistic Regression achieving ~95% prediction accuracy on historical data, with an interactive Streamlit dashboard for disaster response.", url: "", image: "" },
+  { title: "Sentiment Analysis App", tags: ["Python" , "Streamlit"], year: "2024", desc: "An interactive Natural Language Processing web app built with Streamlit that performs real-time sentiment analysis on user text. Features data cleaning pipelines, TF-IDF vectorization, and a dynamic feedback loop that allows the model to learn and improve from user corrections. Demonstrates the deployment of adaptive machine learning models into clean, responsive web interfaces.", url: "https://app-nlp-app-aykwypqkbasjpzsvvzozsp.streamlit.app", image: "sentiment.jpg" },
+  { title: "RISCV - Single Cycle Processor", tags: ["RISCV" , "Vivado" , "Verilog"], year: "2024", desc: "Co-developed a fully functional 32-bit single-cycle RISC-V processor using Verilog and simulated the architecture within Xilinx Vivado. Architected the complete control logic and datapath, integrating the ALU, register file, immediate generator, and memory modules to support multiple instruction formats (R, I, S, B, U). Validated execution accuracy and timing alignment through rigorous modular testing and waveform simulations.", url: "https://github.com/ZainWajid775/RISCV-Single-Cycle-Processor", image: "processor.jpg" },
+  { title: "Airport Management System", tags: ["Python" , "Flask" , "PostgreSQL"], year: "2024", desc: "Engineered a robust relational Airport Management System (AMS) using PostgreSQL to streamline flights, bookings, airlines, and staff operations. Leveraged core DBMS principles, data normalization, and strict referential integrity to build a fully connected, high-performance schema. Implemented advanced SQL queries to deliver real-time operational insights, tracking passenger trends and revenue for business intelligence.", url: "https://github.com/ZainWajid775/Airport-Managment-System", image: "airport.jpg" },
+  { title: "Vehicle Traffic Simulation System", tags: ["C++" , "DSA"], year: "2024", desc: "Engineered an intuitive traffic management system that models interconnected city road networks using advanced graph data structures. Integrated file handling mechanisms for persistent data storage and real-time retrieval of dynamic vehicle and road metrics. Combined core DSA concepts—including hash maps, arrays, and foundational algorithms—to deliver a robust, user-centric software solution.", url: "https://github.com/ZainWajid775/Vehicle-Traffic-Management-System", image: "traffic.jpg" }
+];
 
-// ── STATE ──
-let projects = JSON.parse(localStorage.getItem('zw_projects') || '[]');
-let editIndex = -1;
-let imageDataUrl = '';
-let isAdmin = false;
+function renderProjects() {
+  const grid = document.getElementById('projectsGrid');
+  const empty = document.getElementById('emptyState');
+  if (projects.length === 0) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  grid.innerHTML = projects.map((p, i) => `
+    <div class="project-card reveal" style="transition-delay:${i * 0.07}s">
+      <span class="project-number">0${i + 1}</span>
+      <div class="project-body">
+        <div class="project-tags">
+          ${(p.tags || []).map(t => `<span class="project-tag">${t.trim()}</span>`).join('')}
+          ${p.year ? `<span class="project-tag">${p.year}</span>` : ''}
+        </div>
+        ${p.url
+          ? `<a href="${p.url}" target="_blank" style="text-decoration:none;color:inherit"><h3 class="project-title">${p.title}</h3></a>`
+          : `<h3 class="project-title">${p.title}</h3>`}
+        <p class="project-desc">${p.desc || ''}</p>
+      </div>
+      <div class="project-image-wrap">
+        ${p.image
+          ? `<img src="${p.image}" alt="${p.title}" onerror="this.parentElement.innerHTML='<div class=&quot;project-image-placeholder&quot;>No Image</div>';">`
+          : `<div class="project-image-placeholder">No Image</div>`}
+      </div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.project-card.reveal').forEach(el => { el.classList.remove('visible'); observer.observe(el); });
+}
 
 // ── CURSOR ──
 const cursor = document.getElementById('cursor');
@@ -988,186 +862,6 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── ADMIN ──
-function openLoginModal() {
-  document.getElementById('adminPassInput').value = '';
-  document.getElementById('loginError').textContent = '';
-  document.getElementById('loginOverlay').classList.add('open');
-  setTimeout(() => document.getElementById('adminPassInput').focus(), 300);
-}
-function closeLoginModal() { document.getElementById('loginOverlay').classList.remove('open'); }
-function handleLoginOverlayClick(e) { if (e.target === document.getElementById('loginOverlay')) closeLoginModal(); }
-
-function checkLogin() {
-  const val = document.getElementById('adminPassInput').value;
-  if (val === ADMIN_PASSWORD) {
-    isAdmin = true;
-    closeLoginModal();
-    enableAdminUI();
-  } else {
-    document.getElementById('loginError').textContent = 'Incorrect password.';
-  }
-}
-
-function enableAdminUI() {
-  document.getElementById('navAdminBtn').classList.add('visible');
-  document.getElementById('addProjectBtn').classList.add('visible');
-  document.getElementById('adminBadge').classList.add('visible');
-  document.querySelectorAll('.project-actions').forEach(el => el.classList.add('admin-visible'));
-  document.getElementById('heroPhotoUpload').classList.add('admin-visible');
-  document.getElementById('teamLogoUploadWrap').classList.add('admin-visible');
-}
-
-function logout() {
-  isAdmin = false;
-  document.getElementById('navAdminBtn').classList.remove('visible');
-  document.getElementById('addProjectBtn').classList.remove('visible');
-  document.getElementById('adminBadge').classList.remove('visible');
-  document.querySelectorAll('.project-actions').forEach(el => el.classList.remove('admin-visible'));
-  document.getElementById('heroPhotoUpload').classList.remove('admin-visible');
-  document.getElementById('teamLogoUploadWrap').classList.remove('admin-visible');
-}
-
-// ── PROJECTS ──
-function renderProjects() {
-  const grid = document.getElementById('projectsGrid');
-  const empty = document.getElementById('emptyState');
-  if (projects.length === 0) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
-  empty.style.display = 'none';
-  grid.innerHTML = projects.map((p, i) => `
-    <div class="project-card reveal" style="transition-delay:${i * 0.07}s">
-      <span class="project-number">0${i + 1}</span>
-      <div class="project-body">
-        <div class="project-tags">
-          ${(p.tags || []).map(t => `<span class="project-tag">${t.trim()}</span>`).join('')}
-          ${p.year ? `<span class="project-tag">${p.year}</span>` : ''}
-        </div>
-        ${p.url
-          ? `<a href="${p.url}" target="_blank" style="text-decoration:none;color:inherit"><h3 class="project-title">${p.title}</h3></a>`
-          : `<h3 class="project-title">${p.title}</h3>`}
-        <p class="project-desc">${p.desc || ''}</p>
-      </div>
-      <div class="project-image-wrap">
-        ${p.image
-          ? `<img src="${p.image}" alt="${p.title}">`
-          : `<div class="project-image-placeholder">No Image</div>`}
-      </div>
-      <div class="project-actions${isAdmin ? ' admin-visible' : ''}">
-        <button class="project-edit-btn" onclick="editProject(${i})" title="Edit">✎</button>
-        <button class="project-delete-btn" onclick="deleteProject(${i})" title="Delete">✕</button>
-      </div>
-    </div>
-  `).join('');
-  document.querySelectorAll('.project-card.reveal').forEach(el => { el.classList.remove('visible'); observer.observe(el); });
-}
-
-function saveToStorage() { localStorage.setItem('zw_projects', JSON.stringify(projects)); }
-
-// ── MODAL ──
-function openModal(idx = -1) {
-  if (!isAdmin) return;
-  editIndex = idx; imageDataUrl = '';
-  document.getElementById('previewImg').style.display = 'none';
-  document.getElementById('previewImg').src = '';
-  if (idx >= 0) {
-    const p = projects[idx];
-    document.getElementById('projTitle').value = p.title || '';
-    document.getElementById('projTags').value = (p.tags || []).join(', ');
-    document.getElementById('projYear').value = p.year || '';
-    document.getElementById('projDesc').value = p.desc || '';
-    document.getElementById('projUrl').value = p.url || '';
-    document.getElementById('modalTitle').innerHTML = 'Edit <em>Project</em>';
-    if (p.image) { const img = document.getElementById('previewImg'); img.src = p.image; img.style.display = 'block'; imageDataUrl = p.image; }
-  } else {
-    ['projTitle','projTags','projDesc','projUrl'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('projYear').value = new Date().getFullYear();
-    document.getElementById('modalTitle').innerHTML = 'Add <em>Project</em>';
-  }
-  document.getElementById('modalOverlay').classList.add('open');
-}
-function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
-function handleOverlayClick(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
-function handleImageUpload(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  const img = new Image();
-
-  img.onload = function () {
-
-    const MAX_WIDTH = 600;
-    const scale = MAX_WIDTH / img.width;
-
-    canvas.width = MAX_WIDTH;
-    canvas.height = img.height * scale;
-
-    ctx.drawImage(img,0,0,canvas.width,canvas.height);
-
-    imageDataUrl = canvas.toDataURL('image/jpeg',0.65);
-
-    const preview = document.getElementById('previewImg');
-    preview.src = imageDataUrl;
-    preview.style.display = 'block';
-  };
-
-  img.src = URL.createObjectURL(file);
-}
-function saveProject() {
-  const title = document.getElementById('projTitle').value.trim();
-  if (!title) { alert('Please enter a project title.'); return; }
-  const proj = {
-    title,
-    tags: document.getElementById('projTags').value.split(',').map(t => t.trim()).filter(Boolean),
-    year: document.getElementById('projYear').value.trim(),
-    desc: document.getElementById('projDesc').value.trim(),
-    url: document.getElementById('projUrl').value.trim(),
-    image: imageDataUrl || ''
-  };
-  if (editIndex >= 0) projects[editIndex] = proj; else projects.push(proj);
-  saveToStorage(); renderProjects(); closeModal();
-}
-function editProject(idx) { openModal(idx); }
-function deleteProject(idx) { if (!confirm('Delete this project?')) return; projects.splice(idx, 1); saveToStorage(); renderProjects(); }
-
-// ── PHOTO UPLOAD ──
-function handlePhotoUpload(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  const img = new Image();
-
-  img.onload = function () {
-    const MAX_WIDTH = 800;
-    const scale = MAX_WIDTH / img.width;
-
-    canvas.width = MAX_WIDTH;
-    canvas.height = img.height * scale;
-
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-    const compressed = canvas.toDataURL('image/jpeg', 0.7);
-
-    try {
-      localStorage.setItem('zw_photo', compressed);
-      applyPhoto(compressed);
-    } catch(err) {
-      alert("Storage full. Clear some project images.");
-    }
-  };
-
-  img.src = URL.createObjectURL(file);
-}
-function applyPhoto(src) {
-  const img = document.getElementById('heroPhotoImg');
-  const placeholder = document.getElementById('heroPhotoPlaceholder');
-  img.src = src; img.style.display = 'block';
-  if (placeholder.querySelector('span')) placeholder.style.display = 'none';
-}
-
 function playHeroMotion() {
   const scenes = Array.from(document.querySelectorAll('.hero-motion-scene'));
   if (!scenes.length) return;
@@ -1179,52 +873,12 @@ function playHeroMotion() {
   setTimeout(() => activate('pie'), 4000);
 }
 
-// ── TEAM LOGO UPLOAD ──
-function handleTeamLogoUpload(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-
-  reader.onload = function(ev){
-    try{
-      localStorage.setItem('zw_teamlogo', ev.target.result);
-      applyTeamLogo(ev.target.result);
-    } catch(err){
-      alert("Storage full.");
-    }
-  };
-
-  reader.readAsDataURL(file);
-}
-function applyTeamLogo(src) {
-  const img = document.getElementById('teamLogoImg');
-  const svg = document.querySelector('.team-logo-svg');
-  img.src = src; img.style.display = 'block';
-  if (svg) svg.style.display = 'none';
-}
-
-// ── LOAD SAVED MEDIA ──
-const savedPhoto = localStorage.getItem('zw_photo');
-if (savedPhoto) applyPhoto(savedPhoto);
-const savedLogo = localStorage.getItem('zw_teamlogo');
-if (savedLogo) applyTeamLogo(savedLogo);
 playHeroMotion();
-if (projects.length === 0) {
-  projects = [
-    { title: "Satellite Flood Warning System", tags: ["Python", "OpenCV", "Streamlit", "ML"], year: "2024", desc: "Transformed raw NASA GeoTIFF satellite imagery into ML features using raster preprocessing pipelines. Applied Logistic Regression achieving ~95% prediction accuracy on historical data, with an interactive Streamlit dashboard for disaster response.", url: "", image: "" },
-    { title: "UniPulse — Event Management Platform", tags: ["AWS", "React", "PostgreSQL", "JWT"], year: "2025", desc: "Cloud-native university event platform with QR-based ticketing, multi-role auth via AWS Cognito, and deployment across EC2, Elastic Beanstalk, RDS, S3, and CloudFront.", url: "", image: "" },
-    { title: "Mental Health AI Assistant", tags: ["React", "Node.js", "PostgreSQL", "Framer Motion"], year: "2024", desc: "AI-driven wellness platform integrating therapy chatbots, mood tracking, and an expert appointment system. Built with PostgreSQL for long-term mental health trend analysis.", url: "", image: "" },
-    { title: "Retail Sales Analytics & Segmentation", tags: ["Python", "Scikit-learn", "Streamlit", "K-Means"], year: "2024", desc: "End-to-end customer segmentation using RFM analysis, Apriori association rule mining, and K-Means clustering. Delivered a Streamlit dashboard visualizing KPIs and behavioral segments.", url: "", image: "" },
-    { title: "System Resource Monitor", tags: ["C", "Bash", "Ubuntu", "Linux"], year: "2023", desc: "Lightweight Linux monitoring tool using system calls to track RAM, CPU, processes, and uptime in real time. Optimised for minimal overhead on low-resource systems.", url: "", image: "" }
-  ];
-  saveToStorage(); renderProjects();
-} else { renderProjects(); }
+renderProjects();
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeLoginModal(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { /* no-op, modals removed */ } });
 
 // --- MOBILE / TOUCH HELPERS ---
-// nav toggle for small screens
 try {
   const navEl = document.querySelector('nav');
   const navToggle = document.getElementById('navToggle');
@@ -1245,12 +899,9 @@ try {
       if (window.innerWidth > 900) return; // only for small screens
       const card = ev.target.closest('.project-card');
       if (!card) return;
-      // If clicked a link or button inside card, let it act normally
       if (ev.target.closest('a') || ev.target.closest('button')) return;
-      // toggle expanded, collapse others
       const already = card.classList.toggle('expanded');
       document.querySelectorAll('.project-card.expanded').forEach(c => { if (c !== card) c.classList.remove('expanded'); });
-      // keep the tapped card briefly in view
       if (already) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   }
